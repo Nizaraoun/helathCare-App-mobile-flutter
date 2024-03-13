@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void showSnackError(String title, String message) {
+showSnackError(String title, String message) {
   Get.snackbar(
     title,
     message,

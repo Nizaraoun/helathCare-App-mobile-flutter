@@ -20,29 +20,54 @@ class SerchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: TextFormField(
-        textAlign: TextAlign.right,
-        keyboardType: inputType,
-        strutStyle: const StrutStyle(height: 1.5),
-        keyboardAppearance: Brightness.dark,
-        onTap: () {
-          FocusScope.of(context).unfocus();
-        },
-        validator: validator,
-        decoration: InputDecoration(
-          iconColor: ColorManager.lightGrey2,
-          fillColor: Color.fromARGB(255, 243, 244, 247),
-          filled: true,
-          constraints: BoxConstraints(maxHeight: height),
-          counterStyle: const TextStyle(
-            height: double.minPositive,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          boxShadow: [
+            BoxShadow(
+              color: const Color.fromARGB(255, 190, 189, 189).withOpacity(0.4),
+              spreadRadius: 2,
+              blurStyle: BlurStyle.normal,
+              blurRadius: 3,
+              offset: const Offset(2, 1), // changes position of shadow
+            ),
+          ],
+        ),
+        child: TextFormField(
+          textAlign: TextAlign.right,
+          keyboardType: inputType,
+          strutStyle: const StrutStyle(height: 1.5),
+          keyboardAppearance: Brightness.dark,
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          validator: validator,
+          decoration: InputDecoration(
+            iconColor: ColorManager.black,
+            fillColor: ColorManager.white,
+            filled: true,
+            constraints: BoxConstraints(maxHeight: height),
+            counterStyle: const TextStyle(
+              height: double.minPositive,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.white, width: 2.0),
+              borderRadius: BorderRadius.circular(25),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: ColorManager.primaryColor, width: 2.0),
+              borderRadius: BorderRadius.circular(25),
+            ),
+            hintText: texthint,
+            hintStyle: TextStyle(
+              color: ColorManager.grey,
+              fontFamily: 'Tajawal',
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
+            prefixIcon: icon,
           ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(color: ColorManager.lightGrey2, width: 0.5),
-            borderRadius: BorderRadius.circular(25),
-          ),
-          hintText: texthint,
-          prefixIcon: icon,
         ),
       ),
     );

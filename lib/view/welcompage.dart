@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahtech/view/resources/color/color_manager.dart';
 
+import '../utils/app_routes.dart';
+
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 
@@ -45,7 +47,9 @@ class WelcomePage extends StatelessWidget {
                             height: 56,
                             child: Icon(Icons.arrow_forward),
                           ),
-                          onTap: () {},
+                          onTap: () {
+                            AppRoutes().goToEnd(AppRoutes.onboarding);
+                          },
                         ),
                       ),
                     )

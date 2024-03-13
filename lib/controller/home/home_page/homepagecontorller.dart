@@ -1,0 +1,60 @@
+import 'dart:ui';
+
+import 'package:flutter/src/painting/text_style.dart';
+import 'package:get/get.dart';
+import 'package:sahtech/model/doctor.dart';
+import '../../../service/home/loading_doctor_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../utils/global/snackError.dart';
+import '../../../view/resources/size_config.dart';
+
+abstract class HomePageController extends GetxController {
+  Future<List<DoctorDto>> topfFiveDoctor();
+  recommendedDoctor();
+
+  @override
+  void onInit() {
+    super.onInit();
+    // Call topFiveDoctor() when the controller is initialized
+    topfFiveDoctor();
+  }
+
+  RxList<DoctorDto> doctorDto = <DoctorDto>[].obs;
+  String? token;
+}
+
+class HomePageControllerimp extends HomePageController {
+  // get top five doctor
+  @override
+  Future<List<DoctorDto>> topfFiveDoctor() async {
+    try {
+      token = await SharedPreferences.getInstance()
+          .then((value) => value.getString("token"));
+
+      List<DoctorDto> doctors = await fetchtopfFiveDoctor(token!);
+
+      // Store the list of doctors in the controller
+      doctorDto.assignAll(doctors);
+      // Return the list of doctors
+      update();
+
+      return doctors;
+    } catch (e) {
+      return showSnackError("خطأ", "خطأ في الاتصال بالانترنت");
+    }
+  }
+
+//get all recommended doctor
+  @override
+  recommendedDoctor() async {
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      token = sharedPreferences.getString("token");
+      return fetchtopfFiveDoctor(token!);
+    } catch (e) {
+      return showSnackError("خطأ", "خطأ في الاتصال بالانترنت");
+    }
+  }
+}

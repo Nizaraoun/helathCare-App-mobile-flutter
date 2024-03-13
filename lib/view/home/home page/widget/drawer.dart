@@ -90,7 +90,7 @@ class CustomDrawerWidget extends StatelessWidget {
                 spacing: 0,
               ),
               // bch tkoun feha les info el health mta3 el user
-              Row(
+              const Row(
                 children: [],
               )
             ]),
@@ -152,7 +152,7 @@ class CustomProfieImage extends StatelessWidget {
     return CircleAvatar(
       radius: redius,
       backgroundImage: controller.image.value?.image ??
-          AssetImage("assets/images/userimage.png"),
+          const AssetImage("assets/images/userimage.png"),
     );
   }
 }
@@ -194,7 +194,7 @@ class Custom_Menu_Item extends StatelessWidget {
               child: Icon(
                 icon,
                 color: color,
-                shadows: [const Shadow(color: Colors.black, blurRadius: 6)],
+                shadows: const [Shadow(color: Colors.black, blurRadius: 6)],
                 size: Get.width / 12,
               ),
             ),

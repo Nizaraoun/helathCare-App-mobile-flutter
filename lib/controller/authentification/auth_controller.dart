@@ -21,6 +21,7 @@ class AthControllerImp extends Authcontroller {
   GlobalKey<FormState> formstateotp = GlobalKey<FormState>();
   List<String> inputsignup = ["", "", "", "", ""];
   List<String> inputlogin = ["", ""];
+  List<String> inputotp = ["", "", "", "", "", ""];
   String? name;
 
   //SignUp
@@ -37,7 +38,6 @@ class AthControllerImp extends Authcontroller {
   @override
   signUp() async {
     var formdata = formstatesingup.currentState;
-    print(formdata);
 
     if (formdata!.validate()) {
       Singinapi(inputsignup[0], inputsignup[1], inputsignup[2], inputsignup[3],
@@ -82,5 +82,11 @@ class AthControllerImp extends Authcontroller {
     sharedPreferences.remove("cin");
     Get.offAll(LoginScreen());
     update();
+  }
+
+  void forgetpassword() async {
+    var formdata = formstateotp.currentState;
+
+    if (formstatelogin.currentState!.validate()) {}
   }
 }

@@ -18,7 +18,7 @@ class Onboarding extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image(
-              image: AssetImage('assets/images/logo.png'),
+              image: const AssetImage('assets/images/logo.png'),
               alignment: Alignment.center,
               color: ColorManager.primaryColor,
               width: Get.width * 0.2,
@@ -59,6 +59,9 @@ class Onboarding extends StatelessWidget {
             ),
             SizedBox(height: Get.height * 0.09),
             CustomElevatedButton(
+              size: Get.width * 0.05,
+              widthsize: Get.width * 0.8,
+              heightsize: Get.height * 0.07,
               txt: "تسجيل الدخول",
               color: ColorManager.primaryColor,
               onPressed: () {
@@ -67,6 +70,9 @@ class Onboarding extends StatelessWidget {
             ),
             SizedBox(height: Get.height * 0.02),
             CustomElevatedButton(
+              size: Get.width * 0.05,
+              widthsize: Get.width * 0.8,
+              heightsize: Get.height * 0.07,
               txt: "أنشاء حساب جديد",
               color: ColorManager.red,
               onPressed: () {

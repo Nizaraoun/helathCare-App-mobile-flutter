@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'controller/authentification/otp/internet_connection-controller.dart';
+import 'controller/global/user controller .dart';
+import 'controller/home/home_page/homepagecontorller.dart';
+import 'controller/home/profile/image_picker_controller.dart';
 import 'controller/shared preferences/connection controller.dart';
+import 'utils/geolocation/postion.dart';
 import 'view/resources/color/color_manager.dart';
 import 'widgets/customtext.dart';
 
@@ -16,7 +20,9 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  Internetcontroller controller = Get.put(Internetcontroller());
+  Internetcontroller controller = Get.put(Internetcontrollerimp());
+  UserController controller2 = Get.put(UserController());
+  HomePageControllerimp contoller3 = Get.put(HomePageControllerimp());
 
   @override
   void initState() {

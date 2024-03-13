@@ -6,6 +6,9 @@ import '../view/resources/color/color_manager.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   final Color txtcolor;
+  final double size;
+  final double widthsize;
+  final double heightsize;
   final String txt;
   final FontWeight weight;
   final Color bordercolor;
@@ -19,6 +22,9 @@ class CustomElevatedButton extends StatelessWidget {
     this.txtcolor = ColorManager.white,
     this.onPressed,
     this.weight = FontWeight.bold,
+    required this.size,
+    required this.widthsize,
+    required this.heightsize,
   });
 
   @override
@@ -27,7 +33,7 @@ class CustomElevatedButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
-        minimumSize: Size(Get.width * 0.8, Get.height * 0.07),
+        minimumSize: Size(widthsize, heightsize),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(40),
           side: BorderSide(color: bordercolor),
@@ -36,7 +42,7 @@ class CustomElevatedButton extends StatelessWidget {
       child: CustomTextWidget(
         Txt: txt,
         color: txtcolor,
-        size: Get.width * 0.05,
+        size: size,
         fontweight: weight,
         spacing: 0,
       ),

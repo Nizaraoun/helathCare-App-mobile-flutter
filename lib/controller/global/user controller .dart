@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../utils/app_routes.dart';
+import '../../utils/geolocation/postion.dart';
 import '../../view/authentification/login/login.dart';
 import '../home/profile/image_picker_controller.dart';
 
@@ -12,6 +13,8 @@ class UserController extends GetxController {
   String? Nom;
   String? Phone = "";
   String? Mail = "";
+  double? lat;
+  double? lng;
 
   ImageControllerImp controller = Get.put(ImageControllerImp());
 
@@ -30,9 +33,19 @@ class UserController extends GetxController {
     sharedPreferences.remove("nom");
     sharedPreferences.remove("phone");
     sharedPreferences.remove("mail");
-    AppRoutes.login;
-    print("logout");
+    sharedPreferences.remove("token");
+    AppRoutes().goToEnd(AppRoutes.login);
 
+    update();
+  }
+
+// Get user location for the first time
+  Future<void> MyLocation() async {
+    determinePosition().then((value) {
+      lat = value.latitude;
+      lng = value.longitude;
+      update();
+    });
     update();
   }
 }

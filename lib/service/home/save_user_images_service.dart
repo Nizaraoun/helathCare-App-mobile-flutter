@@ -25,7 +25,6 @@ Future<void> saveimage(String imagebase64, String uid) async {
     if (response.statusCode == 201) {
       Get.off(LoginScreen());
     } else {
-      print('*****************bad**************************');
       showSnackError("خطأ", "البريد الالكتروني مستخدم مسبقا");
     }
   } catch (e) {

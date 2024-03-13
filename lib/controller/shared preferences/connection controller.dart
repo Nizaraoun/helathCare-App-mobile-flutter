@@ -1,33 +1,41 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:get/get.dart';
 import 'package:sahtech/utils/global/check_internet.dart';
-import 'package:sahtech/view/authentification/login/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../view/authentification/onboarding.dart';
-import '../../view/authentification/signup/signup.dart';
-import '../../view/home/home page/home.dart';
+import '../../utils/app_routes.dart';
 import '../global/user controller .dart';
+import '../home/home_page/homepagecontorller.dart';
 
-class Internetcontroller extends GetxController {
-  var res;
-
+abstract class Internetcontroller extends GetxController {
+  String? resStatus;
+  var res = false;
+  initiadata();
   UserController controller = Get.put(UserController());
+  HomePageControllerimp controller2 = Get.put(HomePageControllerimp());
+}
+
+class Internetcontrollerimp extends Internetcontroller {
+  @override
   initiadata() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
-    String? ResStatus = sharedPreferences.getString("nom");
-
+    resStatus = sharedPreferences.getString("token");
     res = await checkInternet();
+    print("object");
 
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () async {
       if (res == true) {
-        if (ResStatus != null) {
-          controller.GetUserinfo();
-          Get.off(() => HomePage());
+        if (resStatus != null) {
+          print("object");
+          await controller.GetUserinfo();
+          await controller.MyLocation();
+          AppRoutes().goToEnd(AppRoutes.home);
+          update();
         } else {
-          Get.off(Onboarding());
+          AppRoutes().goToEnd(AppRoutes.onboarding);
+          update();
         }
       } else {
         Get.snackbar("Error", "Please Check Your Internet");

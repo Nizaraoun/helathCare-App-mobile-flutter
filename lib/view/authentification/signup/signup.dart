@@ -44,45 +44,45 @@ class SignUpScreen extends StatelessWidget {
               children: [
                 CustomTextFormField(
                   inputType: TextInputType.name,
-                  icon: Icon(Icons.person_outline),
+                  icon: const Icon(Icons.person_outline),
                   texthint: " الاسم الكامل ",
                   validator: (p0) {
                     controller.inputsignup[0] = p0!;
 
-                    return validInput(p0!, "username");
+                    return validInput(p0, "username");
                   },
                 ),
                 // email
                 CustomTextFormField(
                   inputType: TextInputType.emailAddress,
-                  icon: Icon(Icons.email_outlined),
+                  icon: const Icon(Icons.email_outlined),
                   texthint: "البريد الالكتروني",
                   validator: (p0) {
                     controller.inputsignup[1] = p0!;
 
-                    return validInput(p0!, "email");
+                    return validInput(p0, "email");
                   },
                 ),
                 CustomTextFormField(
                   inputType: TextInputType.phone,
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.insert_drive_file_rounded,
                   ),
                   texthint: " رقم الهوية",
                   validator: (p0) {
                     controller.inputsignup[2] = p0!;
 
-                    return validInput(p0!, "NumericOnly");
+                    return validInput(p0, "NumericOnly");
                   },
                 ),
                 CustomTextFormField(
                   inputType: TextInputType.phone,
-                  icon: Icon(Icons.phone),
+                  icon: const Icon(Icons.phone),
                   texthint: "رقم الهاتف",
                   validator: (p0) {
                     controller.inputsignup[3] = p0!;
 
-                    return validInput(p0!, "phone");
+                    return validInput(p0, "phone");
                   },
                 ),
                 //use to add space between widgets
@@ -90,12 +90,12 @@ class SignUpScreen extends StatelessWidget {
                 // password
                 CustomTextFormField(
                   inputType: TextInputType.visiblePassword,
-                  icon: Icon(Icons.lock),
+                  icon: const Icon(Icons.lock),
                   texthint: "كلمة المرور",
                   validator: (p0) {
                     controller.inputsignup[4] = p0!;
 
-                    return validInput(p0!, "IsPassword");
+                    return validInput(p0, "IsPassword");
                   },
                 ),
                 //use to add space between widgets
@@ -105,6 +105,9 @@ class SignUpScreen extends StatelessWidget {
                 // login button
                 Center(
                   child: CustomElevatedButton(
+                    size: Get.width * 0.05,
+                    widthsize: Get.width * 0.8,
+                    heightsize: Get.height * 0.07,
                     onPressed: () {
                       controller.signUp();
                     },
@@ -156,6 +159,9 @@ class SignUpScreen extends StatelessWidget {
                 // google button
                 Center(
                   child: CustomElevatedButton(
+                    size: Get.width * 0.05,
+                    widthsize: Get.width * 0.8,
+                    heightsize: Get.height * 0.07,
                     weight: FontWeight.normal,
                     txtcolor: ColorManager.black,
                     bordercolor: ColorManager.black,
@@ -168,6 +174,9 @@ class SignUpScreen extends StatelessWidget {
                 // facebook button
                 Center(
                   child: CustomElevatedButton(
+                    size: Get.width * 0.05,
+                    widthsize: Get.width * 0.8,
+                    heightsize: Get.height * 0.07,
                     weight: FontWeight.normal,
                     bordercolor: ColorManager.black,
                     txtcolor: ColorManager.black,

@@ -7,6 +7,7 @@ import '../../controller/authentification/auth_controller.dart';
 import '../../utils/global/snackError.dart';
 import '../../view/authentification/login/login.dart';
 
+// ignore: non_constant_identifier_names
 Future<void> Singinapi(String username, email, cin, phone, password) async {
   final dio = Dio();
   AthControllerImp controller = Get.put(AthControllerImp());
@@ -24,16 +25,13 @@ Future<void> Singinapi(String username, email, cin, phone, password) async {
       },
     );
     if (response.statusCode == 200) {
-      print('*****************goood**************************');
       await controller.saveuserdata(username, phone, email, cin);
 
       Get.off(LoginScreen());
     } else {
-      print('*****************bad**************************');
       showSnackError("خطأ", "البريد الالكتروني مستخدم مسبقا");
     }
   } catch (e) {
-    print(e);
     showSnackError("خطأ", "البريد الالكتروني مستخدم مسبقا");
   }
 }

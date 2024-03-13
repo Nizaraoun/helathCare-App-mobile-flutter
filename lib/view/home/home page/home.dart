@@ -4,19 +4,26 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:sahtech/view/resources/color/color_manager.dart';
 import 'package:sahtech/view/resources/strings_manager.dart';
+import 'package:sahtech/widgets/cusomelvatedbutton.dart';
 import 'package:sahtech/widgets/custom_text_field.dart';
+import '../../../controller/home/home_page/homepagecontorller.dart';
+import '../../../controller/shared preferences/connection controller.dart';
+import '../../../model/doctor.dart';
 import '../../../utils/app_routes.dart';
 import '../../../widgets/custom_icone_button.dart';
 import '../../../widgets/custom_inkwell_widget.dart';
 import '../../../widgets/customlistview.dart';
 import '../../../widgets/customtext.dart';
+import '../../../widgets/searchfiled.dart';
 import '../../resources/assets_manager.dart';
+import '../../resources/size_config.dart';
+import 'doctor_section/widget/CustomDocotrDetails.dart';
 import 'widget/drawer.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  HomePageControllerimp controller = Get.put(HomePageControllerimp());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,10 +37,11 @@ class HomePage extends StatelessWidget {
             textDirection: TextDirection.rtl,
             children: [
               CustomTextWidget(
+                fontfamily: 'Cario',
                 Txt: "مرحبا بكم في صحتك",
-                size: Get.width / 16,
-                color: Colors.black,
-                fontweight: FontWeight.bold,
+                size: Get.width / 14,
+                color: ColorManager.blackLight,
+                fontweight: FontWeight.w900,
                 spacing: 0,
               ),
               const Spacer(),
@@ -64,8 +72,12 @@ class HomePage extends StatelessWidget {
           Gap(Get.height / 20),
           SizedBox(
             height: Get.height / 11.5,
-            child: CustomTextFormField(
-              icon: const Icon(Icons.search_rounded),
+            child: SerchField(
+              height: Get.height / 11.5,
+              icon: IconButton(
+                icon: const Icon(Icons.search_rounded),
+                onPressed: () {},
+              ),
               texthint: "اطباء ,  دواء ,   بحث",
               inputType: TextInputType.text,
               validator: (value) {
@@ -82,10 +94,12 @@ class HomePage extends StatelessWidget {
             height: Get.height / 5,
             width: Get.width,
             child: CustomListView(
+              reverse: true,
+              direction: Axis.horizontal,
               count: 5,
               itemBuilder: (index) {
                 return GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       AppRoutes()
                           .goTo(AppRoutes().serviceRouting[index].toString());
                     },
@@ -101,7 +115,7 @@ class HomePage extends StatelessWidget {
                           Txt: StringsManager().servicelist[index],
                           size: Get.width / 16,
                           color: ColorManager.grey2,
-                          fontweight: FontWeight.bold,
+                          fontweight: FontWeight.w500,
                           spacing: 0,
                         ),
                       ],
@@ -115,16 +129,65 @@ class HomePage extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   decoration: BoxDecoration(
-                    color: ColorManager.lightGrey2,
+                    color: const Color.fromARGB(255, 101, 129, 184),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                       color: ColorManager.grey,
                       width: 1,
                     ),
                   ),
-                  child: Image.asset(
-                    "assets/images/doctor1.png",
-                    fit: BoxFit.cover,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Image.asset(
+                        width: Get.width,
+                        "assets/images/card_bg.png",
+                        fit: BoxFit.cover,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Image.asset(
+                            "assets/images/doctor2.png",
+                          ),
+                          const Gap(30),
+                          Expanded(
+                            flex: 4,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomTextWidget(
+                                  fontfamily: 'Cario',
+                                  Txt: "دكتورة سارة احمد",
+                                  size: Get.width / 19,
+                                  color: ColorManager.white,
+                                  fontweight: FontWeight.w900,
+                                  spacing: 0,
+                                ),
+                                Gap(Get.height / 50),
+                                CustomTextWidget(
+                                  Txt: "اخصائي جراحة القلب",
+                                  size: Get.width / 22,
+                                  color: ColorManager.white70,
+                                  fontweight: FontWeight.w400,
+                                  spacing: 0,
+                                ),
+                                const Spacer(),
+                                CustomElevatedButton(
+                                  size: Get.width / 23,
+                                  widthsize: Get.width / 3,
+                                  heightsize: Get.height / 20,
+                                  txt: "حجز موعد",
+                                  onPressed: () {},
+                                  color: ColorManager.primaryColor,
+                                  txtcolor: ColorManager.white,
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
                   ),
                 );
               },
@@ -133,7 +196,7 @@ class HomePage extends StatelessWidget {
               layout: SwiperLayout.STACK,
             ),
           ),
-          const Gap(20),
+          Gap(Get.height / 20),
           Row(
             textDirection: TextDirection.rtl,
             children: [
@@ -141,15 +204,17 @@ class HomePage extends StatelessWidget {
                 Txt: "أفضل الأطباء",
                 size: Get.width / 20,
                 color: ColorManager.blackLight,
-                fontweight: FontWeight.bold,
+                fontweight: FontWeight.w900,
                 spacing: 0,
               ),
               const Spacer(),
               CustomInkWellWidget(
-                ontap: () {},
+                ontap: () async {
+                  AppRoutes().goTo(AppRoutes.topdoctor);
+                },
                 widget: CustomTextWidget(
                   Txt: "عرض المزيد",
-                  size: Get.width / 20,
+                  size: Get.width / 19,
                   color: ColorManager.primaryColor,
                   fontweight: FontWeight.w400,
                   spacing: 0,
@@ -157,38 +222,67 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-          const Gap(20),
+          const Gap(10),
           SizedBox(
             width: Get.width * 0.9,
-            height: Get.height / 4,
-            child: CustomListView(
-                count: 5,
-                itemBuilder: (index) {
-                  return Container(
-                    width: Get.width / 2.5,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                          color: ColorManager.lightGrey2, width: 1.5),
-                    ),
-                    child: GestureDetector(
-                        onTap: () {},
-                        child: Column(children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              color: ColorManager.grey,
+            height: Get.height / 3.5,
+            child: Obx(() {
+              return CustomListView(
+                  reverse: true,
+                  direction: Axis.horizontal,
+                  count: controller.doctorDto.length ~/ 4,
+                  itemBuilder: (index) {
+                    return Container(
+                      padding: const EdgeInsets.only(left: 5),
+                      alignment: Alignment.center,
+                      width: Get.width / 2.5,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                            color: ColorManager.lightGrey2, width: 1.5),
+                      ),
+                      child: GestureDetector(
+                          onTap: () {
+                            // AppRoutes().goTo(AppRoutes.doctorprofile);
+                          },
+                          child: Column(children: [
+                            Container(
+                              margin: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: ColorManager.grey,
+                              ),
+                              height: Get.height / 10,
+                              width: Get.width / 5,
+                              child: Image.asset(
+                                "assets/images/doctor1.png",
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                            height: Get.height / 10,
-                            width: Get.width / 5,
-                            child: Image.asset(
-                              "assets/images/doctor1.png",
-                              fit: BoxFit.cover,
+                            //*********** DOCOTR DETAILS********
+                            DoctorDetails(
+                              controller: controller,
+                              index: index,
+                              doctorname: SizeUtil().inputText(
+                                controller.doctorDto[index].name ?? " ",
+                                Get.width / 2.5,
+                                TextStyle(fontSize: Get.width / 20),
+                              ),
+                              namesize: Get.width / 20,
+                              fontweightname: FontWeight.w500,
+                              specialitytextsiz: Get.width / 25,
+                              specialityweight: FontWeight.w400,
+                              spacing: Get.height * 0.01,
+                              fontsizerating:
+                                  TextStyle(fontSize: Get.width / 25),
+                              sizerating: Get.width / 25,
+                              fontweightrating: FontWeight.w400,
+                              iconsizerating: Get.width / 25,
                             ),
-                          )
-                        ])),
-                  );
-                }),
+                          ])),
+                    );
+                  });
+            }),
           ),
         ]),
       ),

@@ -6,8 +6,10 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:sahtech/view/resources/color/color_manager.dart';
 import '../../../controller/home/profile/image_picker_controller.dart';
+import '../../../utils/app_routes.dart';
 import '../../../widgets/customtext.dart';
 import '../home page/widget/drawer.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class MedicalDoc extends StatelessWidget {
   MedicalDoc({super.key});
@@ -17,9 +19,37 @@ class MedicalDoc extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.lightGrey2,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
+      floatingActionButton: SpeedDial(
+        curve: Curves.easeInOutCirc,
+        icon: Icons.folder,
+        buttonSize: const Size(60, 60),
+        activeIcon: Icons.close,
+        activeBackgroundColor: ColorManager.darkOrange,
+        // animatedIcon: AnimatedIcons.menu_close,
+        animatedIconTheme: const IconThemeData(size: 22.0),
+        backgroundColor: ColorManager.darkOrange,
+        children: [
+          SpeedDialChild(
+            child: const Icon(Icons.camera_alt_rounded),
+            backgroundColor: ColorManager.darkOrange,
+            label: 'الكاميرا',
+            labelStyle: const TextStyle(fontSize: 18.0),
+            onTap: () async {
+              await controller.selectImage();
+              if (controller.image.value != null) {}
+            },
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.photo),
+            backgroundColor: ColorManager.darkOrange,
+            label: 'الصور',
+            labelStyle: const TextStyle(fontSize: 18.0),
+            onTap: () async {
+              await controller.selectImage();
+              if (controller.image.value != null) {}
+            },
+          ),
+        ],
       ),
       appBar: AppBar(
         title: const Text('MedicalDoc'),
@@ -89,7 +119,7 @@ class MedicalDoc extends StatelessWidget {
                 ],
               ),
             )),
-            Gap(20),
+            const Gap(20),
             // CustomImageDoc(
             //   picture: controller.image.value!,
 
@@ -102,7 +132,7 @@ class MedicalDoc extends StatelessWidget {
 }
 
 class CustomImageDoc extends StatelessWidget {
-  CustomImageDoc({
+  const CustomImageDoc({
     super.key,
     required this.picture,
   });

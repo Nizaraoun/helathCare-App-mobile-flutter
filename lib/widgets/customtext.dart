@@ -2,12 +2,11 @@ import 'package:flutter/widgets.dart';
 
 class CustomTextWidget extends StatelessWidget {
   final String Txt;
+  final String fontfamily;
   final Color color;
-
   final double size;
   final FontWeight fontweight;
   final double spacing;
-
   const CustomTextWidget({
     super.key,
     required this.Txt,
@@ -15,6 +14,7 @@ class CustomTextWidget extends StatelessWidget {
     required this.size,
     required this.fontweight,
     required this.spacing,
+    this.fontfamily = 'Tajawal',
   });
 
   @override
@@ -22,6 +22,7 @@ class CustomTextWidget extends StatelessWidget {
     return Text(
       Txt,
       style: TextStyle(
+          fontFamily: fontfamily,
           color: color,
           fontSize: size,
           fontWeight: fontweight,

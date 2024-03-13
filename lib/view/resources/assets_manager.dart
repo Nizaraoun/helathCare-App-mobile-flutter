@@ -8,6 +8,8 @@ class AssetsManager {
 
   static const String splashLogo = "$imagePath/splash_logo.png";
 
+  static const String calendar = "$imagePath/calendar.png";
+
 
   static const String videoIntro = "$videoPath/video_intro.mp4";
 

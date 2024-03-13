@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:sahtech/utils/app_routes.dart';
 import 'package:sahtech/view/authentification/signup/signup.dart';
 import 'package:sahtech/view/resources/color/color_manager.dart';
 
@@ -44,7 +45,7 @@ class LoginScreen extends StatelessWidget {
                 // email
                 CustomTextFormField(
                   inputType: TextInputType.text,
-                  icon: Icon(Icons.email),
+                  icon: const Icon(Icons.email),
                   texthint: "البريد الالكتروني",
                   validator: (p0) {
                     controller.inputlogin[0] = p0!;
@@ -56,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                 // password
                 CustomTextFormField(
                   inputType: TextInputType.text,
-                  icon: Icon(Icons.lock),
+                  icon: const Icon(Icons.lock),
                   texthint: "كلمة المرور",
                   validator: (p0) {
                     controller.inputlogin[1] = p0!;
@@ -66,7 +67,9 @@ class LoginScreen extends StatelessWidget {
                 //use to add space between widgets
                 Gap(Get.height * 0.02),
                 CustomInkWellWidget(
-                  ontap: () {},
+                  ontap: () {
+                    AppRoutes().goTo(AppRoutes.forgetPassword);
+                  },
                   widget: CustomTextWidget(
                     Txt: 'نسيت كلمة المرور؟',
                     color: ColorManager.primaryColor,
@@ -81,6 +84,9 @@ class LoginScreen extends StatelessWidget {
                 // login button
                 Center(
                   child: CustomElevatedButton(
+                    size: Get.width * 0.05,
+                    widthsize: Get.width * 0.8,
+                    heightsize: Get.height * 0.07,
                     onPressed: () {
                       controller.login();
                     },
@@ -132,6 +138,9 @@ class LoginScreen extends StatelessWidget {
                 // google button
                 Center(
                   child: CustomElevatedButton(
+                    size: Get.width * 0.05,
+                    widthsize: Get.width * 0.8,
+                    heightsize: Get.height * 0.07,
                     weight: FontWeight.normal,
                     txtcolor: ColorManager.black,
                     bordercolor: ColorManager.black,
@@ -144,6 +153,9 @@ class LoginScreen extends StatelessWidget {
                 // facebook button
                 Center(
                   child: CustomElevatedButton(
+                    size: Get.width * 0.05,
+                    widthsize: Get.width * 0.8,
+                    heightsize: Get.height * 0.07,
                     weight: FontWeight.normal,
                     bordercolor: ColorManager.black,
                     txtcolor: ColorManager.black,

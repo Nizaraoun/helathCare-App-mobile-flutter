@@ -17,8 +17,10 @@ class ColorManager {
 
   static Color pink = const Color.fromARGB(255, 255, 236, 242);
 
+  static Color white1 = const Color(0xffE8F3F1);
 
-  static const Color primary = Color(0xff005782);
+
+  static const Color primary = Color.fromARGB(255, 59, 68, 83);
 
 
   static Color darkGrey = const Color(0xff525252);
@@ -33,6 +35,9 @@ class ColorManager {
   static const Color lightGrey2 = Color.fromRGBO(229, 231, 235, 1);
 
 
+  static const Color lightGrey3 = Color.fromRGBO(243, 243, 245, 1);
+
+
   // new colors
 
 
@@ -42,7 +47,7 @@ class ColorManager {
   static Color mediumDarkPrimary = const Color(0xff005782);
 
 
-  static Color lightPrimary = const Color(0xff005782);
+  static Color lightPrimary = const Color.fromARGB(255, 59, 68, 83);
 
 
   static Color selectedNavBarItem = const Color(0xff389be8);
@@ -61,6 +66,9 @@ class ColorManager {
 
 
   static const Color darkGreen = Color(0xFF2B9D0D);
+
+
+  static const Color greenrate = Color.fromARGB(82, 193, 249, 239);
 
 
   static const Color green = Color(0xFF2BB405);
@@ -93,13 +101,16 @@ class ColorManager {
   static Color black = const Color(0xff000000);
 
 
-  static Color blackLight = const Color(0xff423e3e);
+  static Color blackLight = const Color.fromARGB(210, 66, 62, 62);
 
 
   static Color yellow = const Color(0xfffff200);
 
 
   static const Color amber = Color(0xffd9cd0b);
+
+
+  static const Color grey5 = Color.fromARGB(255, 228, 244, 241);
 
 
   static Color lightOrange = const Color(0xFFFFCC80);
@@ -115,6 +126,9 @@ class ColorManager {
 
 
   static Color red = const Color(0xfffd1010); // red color
+
+
+  static Color grey4 = const Color.fromARGB(255, 200, 196, 196); // red color
 
 
   static Color getProgressBarColor(
