@@ -1,15 +1,19 @@
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+import '../../../service/home/free_reservation.dart';
+
 abstract class ReservationController extends GetxController {
   RxList<DateTime> dates = <DateTime>[].obs;
   RxInt selectedIndex = 0.obs;
   DateTime selectedDate = DateTime.now();
 
+  int idPraticien = 0;
+
   RxList<bool> buttonStates = <bool>[].obs;
   RxList<String> timeSlots = <String>[].obs;
 
-  void generateTimeSlots(DateTime selectedDate);
+  void generateTimeSlots(DateTime selectedDate, int idPraticien);
   void _initializeDates();
   bool _isSameDay(DateTime date1, DateTime date2);
   void onButtonPressed(int index);
@@ -19,7 +23,7 @@ abstract class ReservationController extends GetxController {
   void onInit() {
     _initializeDates();
     selectedDate = DateTime.now();
-    generateTimeSlots(selectedDate);
+    generateTimeSlots(selectedDate, idPraticien);
     super.onInit();
   }
 }
@@ -50,7 +54,7 @@ class ReservationControllerImp extends ReservationController {
   }
 
   @override
-  void generateTimeSlots(DateTime selectedDate) {
+  void generateTimeSlots(DateTime selectedDate, int idPraticien) async {
     timeSlots.clear();
     DateTime startTime =
         DateTime(selectedDate.year, selectedDate.month, selectedDate.day, 8, 0);
@@ -66,6 +70,9 @@ class ReservationControllerImp extends ReservationController {
       startTime = DateTime(
           startTime.year, startTime.month, startTime.day, startTime.hour);
     }
+    // Get reserved hours for the selected doctor on the selected day
+    ReservationService().getReservedHoursForDoctorOnDay(
+        idPraticien: idPraticien, jour: selectedDate.toString().split(' ')[0]);
     // Check if the time slot is in the past and mark it as unavailable if so (for today's date only)
     for (int i = 0; i < timeSlots.length; i++) {
       if (_isSameDay(selectedDate, DateTime.now())) {

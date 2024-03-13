@@ -3,9 +3,9 @@ class ReservedHoursResponse {
 
   ReservedHoursResponse({required this.reservedHours});
 
-  factory ReservedHoursResponse.fromJson(Map<String, dynamic> json) {
+  factory ReservedHoursResponse.fromJson(List<dynamic> json) {
     return ReservedHoursResponse(
-      reservedHours: List<String>.from(json['reservedHours']),
+      reservedHours: List<String>.from(json),
     );
   }
 }

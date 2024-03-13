@@ -1,15 +1,18 @@
 import 'package:dio/dio.dart';
 
 import '../../model/reservation.dart';
+import '../../utils/global/token.dart';
 
 class ReservationService {
   final Dio _dio = Dio();
+  String? token;
 
   Future<ReservedHoursResponse> getReservedHoursForDoctorOnDay({
     required int idPraticien,
     required String jour,
-    required String token,
   }) async {
+    // Get the token from the shared preferences
+    token = await Token.getToken();
     _dio.options.headers['Authorization'] = 'Bearer $token';
     const String url = 'http://10.0.2.2:8080/api/getDoctorResrvation';
 
@@ -19,6 +22,7 @@ class ReservationService {
         'jour': jour,
       });
       if (response.statusCode == 200) {
+        print(response.data);
         return ReservedHoursResponse.fromJson(response.data);
       } else {
         throw Exception('Failed to get reserved hours for doctor on day');

@@ -7,6 +7,7 @@ import '../../../service/home/loading_doctor_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../utils/global/snackError.dart';
+import '../../../utils/global/token.dart';
 import '../../../view/resources/size_config.dart';
 
 abstract class HomePageController extends GetxController {
@@ -29,9 +30,8 @@ class HomePageControllerimp extends HomePageController {
   @override
   Future<List<DoctorDto>> topfFiveDoctor() async {
     try {
-      token = await SharedPreferences.getInstance()
-          .then((value) => value.getString("token"));
-
+      // Get the token from the shared preferences
+      token = await Token.getToken();
       List<DoctorDto> doctors = await fetchtopfFiveDoctor(token!);
 
       // Store the list of doctors in the controller

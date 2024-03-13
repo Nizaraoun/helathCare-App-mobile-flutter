@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 
 import '../../model/doctor.dart';
+import '../../utils/global/snackError.dart';
 
 Future<List<DoctorDto>> fetchtopfFiveDoctor(String Token) async {
-  Dio dio = new Dio();
+  Dio dio = Dio();
   dio.options.headers['Authorization'] = 'Bearer $Token';
 
   const String url = 'http://10.0.2.2:8080/api/recommended_doctors';
@@ -18,11 +19,9 @@ Future<List<DoctorDto>> fetchtopfFiveDoctor(String Token) async {
       List<DoctorDto> doctors =
           responseData.map((json) => DoctorDto.fromJson(json)).toList();
       return doctors;
-    } else {
-      print('*****************bad**************************');
-    }
+    } else {}
   } catch (e) {
-    print(e);
+    showSnackError("عفوا", "حدث خطأ ما اثناء البحث عن الأطباء");
   }
   return [];
 }

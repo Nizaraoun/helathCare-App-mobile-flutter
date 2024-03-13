@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
@@ -25,10 +23,9 @@ Future<void> saveimage(String imagebase64, String uid) async {
     if (response.statusCode == 201) {
       Get.off(LoginScreen());
     } else {
-      showSnackError("خطأ", "البريد الالكتروني مستخدم مسبقا");
+      showSnackError("خطأ", "حدث خطأ ما اثناء حفظ الصورة");
     }
   } catch (e) {
-    print(e);
-    showSnackError("خطأ", "البريد الالكتروني مستخدم مسبقا");
+    showSnackError("خطأ", " حدث خطأ ما اثناء حفظ الصورة");
   }
 }

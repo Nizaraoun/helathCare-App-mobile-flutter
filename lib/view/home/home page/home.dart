@@ -2,6 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:sahtech/controller/home/doctor/reservation_controller.dart';
 import 'package:sahtech/view/resources/color/color_manager.dart';
 import 'package:sahtech/view/resources/strings_manager.dart';
 import 'package:sahtech/widgets/cusomelvatedbutton.dart';
@@ -24,6 +25,8 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   HomePageControllerimp controller = Get.put(HomePageControllerimp());
+  ReservationControllerImp reservationController =
+      Get.put(ReservationControllerImp());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -243,7 +246,11 @@ class HomePage extends StatelessWidget {
                       ),
                       child: GestureDetector(
                           onTap: () {
-                            // AppRoutes().goTo(AppRoutes.doctorprofile);
+                            AppRoutes().goTo(AppRoutes.doctorProfile,
+                                requiredVariable:
+                                    controller.doctorDto[index].id);
+                            reservationController.idPraticien =
+                                controller.doctorDto[index].id ?? 0;
                           },
                           child: Column(children: [
                             Container(

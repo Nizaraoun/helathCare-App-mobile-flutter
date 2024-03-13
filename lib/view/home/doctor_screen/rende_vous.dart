@@ -10,10 +10,11 @@ import '../../../widgets/Dvider.dart';
 import '../../resources/assets_manager.dart';
 
 class RendVous extends StatelessWidget {
-  RendVous({super.key});
+  RendVous({
+    super.key,
+  });
 
   ReservationControllerImp controller = Get.put(ReservationControllerImp());
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,7 +35,8 @@ class RendVous extends StatelessWidget {
                     onTap: () {
                       controller.selectedIndex.value = index;
                       controller.selectedDate = controller.dates[index];
-                      controller.generateTimeSlots(controller.selectedDate);
+                      controller.generateTimeSlots(
+                          controller.selectedDate, controller.idPraticien);
                     },
                     child: Container(
                       width: Get.width * 0.12,

@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
 
       ),
 
-      initialRoute: AppRoutes.doctorProfile,
+      initialRoute: AppRoutes.home,
 
       getPages: AppRoutes().appRoutes,
 

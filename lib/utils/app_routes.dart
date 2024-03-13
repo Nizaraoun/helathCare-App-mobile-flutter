@@ -68,12 +68,18 @@ class AppRoutes {
   ];
 
 // Routing method to navigate
-  void goTo(String pagename) {
-    Get.toNamed(pagename);
+  void goTo(String pagename, {dynamic requiredVariable}) {
+    Get.toNamed(pagename,
+        arguments: requiredVariable); // Pass the required variable as arguments
   }
 
 // Routing method and remove all previous pages
   void goToEnd(String pagename) {
     Get.offAllNamed(pagename);
+  }
+
+  void goTowithvarbiable(String pagename, dynamic requiredVariable) {
+    Get.toNamed(pagename,
+        arguments: requiredVariable); // Pass the required variable as arguments
   }
 }
