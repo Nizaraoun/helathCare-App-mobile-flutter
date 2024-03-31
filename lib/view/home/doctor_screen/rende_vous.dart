@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart'; // Import for setting locale
 import 'package:sahtech/view/resources/color/color_manager.dart';
+import 'package:sahtech/widgets/customtext.dart';
 import '../../../../widgets/customlistview.dart';
 import '../../../controller/home/doctor/reservation_controller.dart';
 import '../../../widgets/Dvider.dart';
@@ -21,7 +22,7 @@ class RendVous extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 90),
+          padding: EdgeInsets.only(top: Get.height * 0.02),
           child: SizedBox(
             width: Get.width * 0.9,
             height: Get.height * 0.08,
@@ -42,7 +43,7 @@ class RendVous extends StatelessWidget {
                       width: Get.width * 0.12,
                       decoration: BoxDecoration(
                         color: controller.selectedIndex.value == index
-                            ? Colors.blue
+                            ? ColorManager.primaryColor
                             : ColorManager.white1,
                         borderRadius: BorderRadius.circular(15),
                       ),
@@ -62,7 +63,7 @@ class RendVous extends StatelessWidget {
                           ),
                           const SizedBox(height: 5),
                           Text(
-                            DateFormat('dd MMM', 'ar')
+                            DateFormat('dd MMM', 'fr')
                                 .format(controller.dates[index]),
                             style: TextStyle(
                               color: controller.selectedIndex.value == index
@@ -102,30 +103,37 @@ class RendVous extends StatelessWidget {
               spacing: Get.height * 0.02,
               runSpacing: 8.0,
               children: List.generate(
-                controller.timeSlots.length,
-                (index) => ElevatedButton(
-                  onPressed: controller.buttonStates[index]
-                      ? () => controller.onButtonPressed(index)
-                      : null,
-                  onHover: (value) {
-                    print(value);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    surfaceTintColor: Colors.white,
-                    animationDuration: const Duration(seconds: 2),
-                    fixedSize: Size(Get.width * 0.3, Get.height * 0.061),
-                    foregroundColor: Colors.black,
-                    backgroundColor: controller.buttonStates[index]
-                        ? ColorManager.primaryColor
-                        : const Color.fromARGB(255, 217, 29, 29),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
-                      side: const BorderSide(color: Colors.black),
-                    ),
-                  ),
-                  child: Text(controller.timeSlots[index]),
-                ),
-              ),
+                  controller.timeSlots.length,
+                  (index) => ElevatedButton(
+                        onPressed: controller.buttonStates[index]
+                            ? () => controller.onButtonPressed(index)
+                            : null,
+                        onHover: (value) {},
+                        style: ElevatedButton.styleFrom(
+                          surfaceTintColor: ColorManager.black,
+                          animationDuration: const Duration(seconds: 1),
+                          fixedSize: Size(Get.width * 0.3, Get.height * 0.061),
+                          foregroundColor: ColorManager.black,
+                          backgroundColor: controller.buttonStates[index]
+                              ? ColorManager.primaryColor
+                              : ColorManager.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            side: const BorderSide(
+                                color: ColorManager.primaryColor),
+                          ),
+                        ),
+                        child: CustomTextWidget(
+                          spacing: 0,
+                          fontfamily: 'Tajawal',
+                          Txt: controller.timeSlots[index],
+                          color: controller.buttonStates[index]
+                              ? ColorManager.black
+                              : ColorManager.grey,
+                          size: Get.width * 0.04,
+                          fontweight: FontWeight.bold,
+                        ),
+                      )),
             );
           }
         }),

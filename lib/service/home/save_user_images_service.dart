@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 import '../../utils/global/snackError.dart';
 import '../../view/authentification/login/login.dart';
 
-Future<void> saveimage(String imagebase64, String uid) async {
+Future<void> saveimage(String? imagebase64, String uid) async {
   final dio = Dio();
-  const String url = 'http://10.0.2.2:8080/saveimage';
+  dio.options.headers['Authorization'] = 'Bearer $uid';
+
+  const String url = 'http://10.0.2.2:8080/api/addProfileimg';
 
   try {
     final response = await dio.post(
@@ -14,16 +16,11 @@ Future<void> saveimage(String imagebase64, String uid) async {
       data: {
         "image": imagebase64,
       },
-      options: Options(
-        headers: {
-          "uid": uid,
-        },
-      ),
     );
-    if (response.statusCode == 201) {
-      Get.off(LoginScreen());
+    if (response.statusCode == 200) {
+      showSnackError("تم", "تم حفظ الصورة بنجاح");
     } else {
-      showSnackError("خطأ", "حدث خطأ ما اثناء حفظ الصورة");
+      showSnackError("خطأ", "..........حدث خطأ ما اثناء حفظ الصورة");
     }
   } catch (e) {
     showSnackError("خطأ", " حدث خطأ ما اثناء حفظ الصورة");

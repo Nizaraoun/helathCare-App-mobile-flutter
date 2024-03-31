@@ -12,10 +12,9 @@ class Authentification {
     try {
       if (!await canAuthentifier()) return false;
       return await _auth.authenticate(
-          localizedReason: 'Authentifiez-vous pour accéder à l\'application',
-          );
+        localizedReason: 'Authentifiez-vous pour accéder à l\'application',
+      );
     } catch (e) {
-      print('Erreur lors de l\'authentification : $e');
       return false;
     }
   }

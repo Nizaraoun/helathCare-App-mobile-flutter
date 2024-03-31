@@ -11,8 +11,6 @@ Future<void> loginservice(String email, password) async {
   AthControllerImp controller = Get.put(AthControllerImp());
   final dio = Dio();
   const String url = 'http://10.0.2.2:8080/authenticate';
-  print(email);
-  print(password);
 
   try {
     final response = await dio.post(
@@ -27,12 +25,10 @@ Future<void> loginservice(String email, password) async {
       controller.savetoken(response.data['accessToken']);
       Get.off(HomePage());
     } else {
-      print(response.statusCode);
       showSnackError(
           "خطأ", "الرجاء التأكد من البريد الالكتروني أو كلمة المرور");
     }
   } catch (e) {
-    print(e);
     showSnackError("خطأ", "الرجاء التأكد من البريد الالكتروني أو كلمة المرور");
   }
 }

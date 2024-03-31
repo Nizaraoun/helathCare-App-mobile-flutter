@@ -57,10 +57,14 @@ class CustomDrawerWidget extends StatelessWidget {
                         icon: const Icon(Icons.edit),
                         onPressed: () async {
                           await controller.selectImage();
-                          if (controller.image.value != null) {
-                            await controller.saveImage(
-                                controller.image.value?.image as String);
-                          }
+                          // if (controller.image.value != null) {
+                          //   // await controller.saveImage(
+                          //   //     controller.image.value?.image as String);
+                          //   print("my image");
+                          //   print(controller.image.value?.image);
+                          //   print("my image");
+                          //   print("my image");
+                          // }
                         },
                         color: ColorManager.blackLight,
                         style: ButtonStyle(

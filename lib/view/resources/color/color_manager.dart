@@ -17,7 +17,11 @@ class ColorManager {
 
   static Color pink = const Color.fromARGB(255, 255, 236, 242);
 
+
   static Color white1 = const Color(0xffE8F3F1);
+
+
+  static Color whitedoc = const Color.fromARGB(19, 0, 0, 0);
 
 
   static const Color primary = Color.fromARGB(255, 59, 68, 83);
@@ -39,6 +43,15 @@ class ColorManager {
 
 
   // new colors
+
+
+  static const Color blueprimaryColor = Color(0xFF2967FF);
+
+
+  static const Color grayColor = Color(0xFF8D8D8E);
+
+
+  static const double defaultPadding = 16.0;
 
 
   static const Color darkPrimary = Color(0xff005782);
@@ -69,6 +82,9 @@ class ColorManager {
 
 
   static const Color greenrate = Color.fromARGB(82, 193, 249, 239);
+
+
+  static const Color lightgreen = Color.fromARGB(212, 193, 249, 239);
 
 
   static const Color green = Color(0xFF2BB405);
@@ -129,6 +145,9 @@ class ColorManager {
 
 
   static Color grey4 = const Color.fromARGB(255, 200, 196, 196); // red color
+
+
+  static Color grey6 = const Color.fromARGB(117, 0, 0, 0); // red color
 
 
   static Color getProgressBarColor(
@@ -545,11 +564,7 @@ class ColorManager {
       // You might want to return a default color here instead of throwing an error
 
 
-      if (kDebugMode) {
-
-        print('Invalid color code: $code');
-
-      }
+      if (kDebugMode) {}
 
 
       return ColorManager.white70;
@@ -567,9 +582,6 @@ class ColorManager {
 
 
       // You can handle this error by returning a default color
-
-
-      print('Failed to parse color code: $code. Error: $e');
 
 
       return const Color(0xFF000000); // This returns a black color as a default

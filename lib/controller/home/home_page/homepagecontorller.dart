@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:flutter/src/painting/text_style.dart';
 import 'package:get/get.dart';
 import 'package:sahtech/model/doctor.dart';
 import '../../../service/home/loading_doctor_service.dart';
@@ -8,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../utils/global/snackError.dart';
 import '../../../utils/global/token.dart';
-import '../../../view/resources/size_config.dart';
 
 abstract class HomePageController extends GetxController {
   Future<List<DoctorDto>> topfFiveDoctor();
@@ -23,6 +19,7 @@ abstract class HomePageController extends GetxController {
 
   RxList<DoctorDto> doctorDto = <DoctorDto>[].obs;
   String? token;
+  late RxBool isLoading = true.obs;
 }
 
 class HomePageControllerimp extends HomePageController {
@@ -33,12 +30,11 @@ class HomePageControllerimp extends HomePageController {
       // Get the token from the shared preferences
       token = await Token.getToken();
       List<DoctorDto> doctors = await fetchtopfFiveDoctor(token!);
-
       // Store the list of doctors in the controller
       doctorDto.assignAll(doctors);
       // Return the list of doctors
+      isLoading(false);
       update();
-
       return doctors;
     } catch (e) {
       return showSnackError("خطأ", "خطأ في الاتصال بالانترنت");

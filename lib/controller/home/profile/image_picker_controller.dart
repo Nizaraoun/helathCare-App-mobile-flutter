@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 import '../../../service/home/save_user_images_service.dart';
+import '../../../utils/global/token.dart';
 
 abstract class ImageController extends GetxController {
   selectImage();
@@ -21,11 +22,12 @@ class ImageControllerImp extends ImageController {
 
   @override
   selectImage() async {
-    final ImagePicker _picker = ImagePicker();
+    final ImagePicker picker = ImagePicker();
     final XFile? pickedImage =
-        await _picker.pickImage(source: ImageSource.gallery);
+        await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedImage != null) {
+      print(pickedImage.path);
       await saveImage(pickedImage.path);
       await loadImage();
     }
@@ -37,11 +39,13 @@ class ImageControllerImp extends ImageController {
   saveImage(String imagePath) async {
     final File imageFile = File(imagePath);
     final bytes = await imageFile.readAsBytes();
-    String base64Image = base64Encode(bytes);
-
+    String? base64Image = base64Encode(bytes);
+    print(base64Image);
     //save image to local storage
     await saveBase64Image(base64Image);
-    //save image to server
+    Token.getToken().then((value) {
+      saveimage(base64Image, value!);
+    });
     // await saveimage(base64Image, "uid");
   }
 

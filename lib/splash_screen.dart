@@ -14,7 +14,6 @@ import 'widgets/customtext.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
-
   @override
   State<Splash> createState() => _SplashState();
 }
@@ -28,6 +27,7 @@ class _SplashState extends State<Splash> {
   void initState() {
     setState(() {
       controller.initiadata();
+      controller.determinePosition();
     });
 
     super.initState();

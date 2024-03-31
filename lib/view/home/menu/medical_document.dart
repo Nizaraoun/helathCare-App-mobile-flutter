@@ -5,20 +5,29 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:sahtech/view/resources/color/color_manager.dart';
+import 'package:sahtech/widgets/custom_icone_button.dart';
+import 'package:sahtech/widgets/searchfiled.dart';
 import '../../../controller/home/profile/image_picker_controller.dart';
-import '../../../utils/app_routes.dart';
+import '../../../widgets/customlistview.dart';
 import '../../../widgets/customtext.dart';
-import '../home page/widget/drawer.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+
+import '../../../widgets/dropdown.dart';
 
 class MedicalDoc extends StatelessWidget {
   MedicalDoc({super.key});
   ImageControllerImp controller = Get.put(ImageControllerImp());
+  final List<String> genderItems = [
+    'Male',
+    'Female',
+  ];
 
+  String? selectedValue;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.lightGrey2,
+      backgroundColor: ColorManager.white,
       floatingActionButton: SpeedDial(
         curve: Curves.easeInOutCirc,
         icon: Icons.folder,
@@ -52,78 +61,158 @@ class MedicalDoc extends StatelessWidget {
         ],
       ),
       appBar: AppBar(
-        title: const Text('MedicalDoc'),
-      ),
+          centerTitle: true,
+          title: CustomTextWidget(
+            Txt: 'الملف الطبي',
+            size: 20,
+            color: ColorManager.black,
+            spacing: 2,
+            fontfamily: 'Cairo',
+            fontweight: FontWeight.w600,
+          )),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
+        padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
         child: Column(
           children: [
-            GestureDetector(
-                child: Container(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
-              width: Get.width,
-              height: Get.height / 6,
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-                color: ColorManager.darkOrange,
-                borderRadius: BorderRadius.circular(10),
+            SizedBox(
+              height: Get.height / 11.5,
+              child: SerchField(
+                height: Get.height / 11.5,
+                icon: IconButton(
+                  icon: const Icon(Icons.search_rounded),
+                  onPressed: () {},
+                ),
+                texthint: "  بحث",
+                inputType: TextInputType.text,
+                validator: (value) {
+                  return null;
+                },
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    textDirection: TextDirection.rtl,
-                    children: [
-                      CustomProfieImage(
-                        controller: controller,
-                        redius: 30,
-                      ),
-                      Gap(Get.width / 20),
-                      CustomTextWidget(
-                        Txt: 'نزار عون',
-                        color: ColorManager.blackLight,
-                        size: Get.width / 15,
-                        fontweight: FontWeight.bold,
-                        spacing: 0,
-                      ),
-                    ],
-                  ),
-                  Gap(Get.height / 40),
-                  Row(
-                    textDirection: TextDirection.rtl,
-                    children: [
-                      CustomTextWidget(
-                        Txt: ': رقم الملف الطبي',
-                        color: ColorManager.darkBlue,
-                        size: 20,
-                        fontweight: FontWeight.bold,
-                        spacing: 0,
-                      ),
-                      CustomTextWidget(
-                        Txt: '15229 ',
-                        color: ColorManager.blackLight,
-                        size: 20,
-                        fontweight: FontWeight.bold,
-                        spacing: 0,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            )),
-            const Gap(20),
-            // CustomImageDoc(
-            //   picture: controller.image.value!,
+            ),
 
-            // )
+            const Gap(20),
+            //*********** add ********
+            Row(
+              children: [
+                CustomIconButton(
+                  icon: const Icon(Icons.add_circle_rounded),
+                  onPressed: () {
+                    showDialog(
+                      traversalEdgeBehavior: TraversalEdgeBehavior.parentScope,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return SizedBox(
+                          width: Get.width * 0.9,
+                          height: Get.height / 3,
+                          child: const AlertDialog(
+                            title: Center(child: Text("أضافة ملف جديد")),
+                            actions: [
+                              // CustomDropdownButton(
+                              //   item: genderItems,
+                              //   selectedValue: selectedValue,
+                              // ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  color: ColorManager.blueprimaryColor,
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                      ColorManager.lightGrey2,
+                    ),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  tooltip: "أضافة ملف جديد",
+                  iconSize: Get.width / 12,
+                  alignment: Alignment.centerLeft,
+                  visualDensity: VisualDensity.adaptivePlatformDensity,
+                  autofocus: true,
+                ),
+                const Spacer(),
+                CustomTextWidget(
+                  Txt: 'الملفات الطبية',
+                  color: ColorManager.grey1,
+                  size: Get.width / 20,
+                  fontweight: FontWeight.w600,
+                  spacing: 1,
+                ),
+              ],
+            ),
+            Gap(Get.height * 0.03),
+            SizedBox(
+                width: Get.width * 0.9,
+                height: Get.height * 0.25,
+                child: CustomListView(
+                    reverse: true,
+                    direction: Axis.horizontal,
+                    count: 15,
+                    itemBuilder: (index) {
+                      return Column(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(
+                              bottom: 5,
+                            ),
+                            padding: const EdgeInsets.only(
+                              left: 10,
+                            ),
+                            width: Get.width / 3,
+                            height: Get.height / 6.5,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color:
+                                      ColorManager.darkOrange.withOpacity(0.2),
+                                  spreadRadius: 2,
+                                  blurRadius: 3,
+                                  offset: const Offset(
+                                      2, 1), // changes position of shadow
+                                ),
+                              ],
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                CustomIconButton(
+                                  onPressed: () {},
+                                  icon:
+                                      const Icon(Icons.delete_forever_outlined),
+                                  alignment: Alignment.topLeft,
+                                  color: ColorManager.grey2,
+                                  iconSize: Get.width / 15,
+                                  tooltip: "حذف الملف",
+                                  visualDensity:
+                                      VisualDensity.adaptivePlatformDensity,
+                                  autofocus: true,
+                                ),
+                                Center(
+                                  child: Image.asset(
+                                    "assets/images/folder.png",
+                                    width: Get.width / 6.4,
+                                    height: Get.height / 12.5,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          CustomTextWidget(
+                            Txt: 'الملف رقم ${index + 1}',
+                            color: ColorManager.black,
+                            size: Get.width / 17,
+                            fontweight: FontWeight.w300,
+                            spacing: 0,
+                          ),
+                        ],
+                      );
+                    })),
           ],
         ),
       ),

@@ -78,6 +78,7 @@ class DoctorDetails extends StatelessWidget {
                 color: ColorManager.primaryColor,
               ),
               CustomTextWidget(
+                fontfamily: 'Cairo',
                 Txt: controller.doctorDto[index].rate.toString(),
                 size: sizerating,
                 color: ColorManager.primaryColor,

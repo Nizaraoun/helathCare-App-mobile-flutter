@@ -19,6 +19,8 @@ class CustomListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      clipBehavior: Clip.none,
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       reverse: reverse,
       scrollDirection: direction,
       separatorBuilder: (context, i) => Gap(Get.width / 18),

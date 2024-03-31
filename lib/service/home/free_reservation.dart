@@ -22,7 +22,6 @@ class ReservationService {
         'jour': jour,
       });
       if (response.statusCode == 200) {
-        print(response.data);
         return ReservedHoursResponse.fromJson(response.data);
       } else {
         throw Exception('Failed to get reserved hours for doctor on day');

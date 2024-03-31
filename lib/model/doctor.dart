@@ -22,10 +22,7 @@ class DoctorDto {
   });
 
   factory DoctorDto.fromJson(Map<String?, dynamic> json) {
-    print("Raw rating from JSON: ${json['rating']}");
-
     double? parsedRate = double.tryParse(json['rating'].toString() ?? '0');
-    print("Parsed rating: $parsedRate");
 
     return DoctorDto(
       lat1: json['latitude'] ?? '0',
