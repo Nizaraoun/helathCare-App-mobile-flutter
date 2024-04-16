@@ -3,7 +3,7 @@ import 'package:sahtech/model/doctor.dart';
 import '../../../service/home/loading_doctor_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../utils/global/snackError.dart';
+import '../../../utils/global/snack_error.dart';
 import '../../../utils/global/token.dart';
 
 abstract class HomePageController extends GetxController {

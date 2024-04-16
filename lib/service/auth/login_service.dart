@@ -1,11 +1,10 @@
-import 'dart:ffi';
-
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:sahtech/view/home/home%20page/home.dart';
 
 import '../../controller/authentification/auth_controller.dart';
-import '../../utils/global/snackError.dart';
+import '../../model/user.dart';
+import '../../utils/global/snack_error.dart';
 
 Future<void> loginservice(String email, password) async {
   AthControllerImp controller = Get.put(AthControllerImp());
@@ -23,12 +22,19 @@ Future<void> loginservice(String email, password) async {
     if (response.statusCode == 200) {
       // save the token in the local storage
       controller.savetoken(response.data['accessToken']);
-      Get.off(HomePage());
+      final responseData = response.data;
+      final user = User.fromJson(responseData['user']);
+
+      controller.saveuserdata(
+          user.username, user.email, user.cin, user.phone, user.id, user.image);
+
+      Get.off(const HomePage());
     } else {
       showSnackError(
           "خطأ", "الرجاء التأكد من البريد الالكتروني أو كلمة المرور");
     }
   } catch (e) {
-    showSnackError("خطأ", "الرجاء التأكد من البريد الالكتروني أو كلمة المرور");
+    showSnackError(
+        "خطأ", "+++الرجاء التأكد من البريد الالكتروني أو كلمة المرور");
   }
 }

@@ -6,7 +6,7 @@ class DoctorDto {
   final String? phone;
   final String? email;
   final String? image;
-  final int? id;
+  final String? id;
   final double? rate;
 
   DoctorDto({
@@ -22,7 +22,7 @@ class DoctorDto {
   });
 
   factory DoctorDto.fromJson(Map<String?, dynamic> json) {
-    double? parsedRate = double.tryParse(json['rating'].toString() ?? '0');
+    double? parsedRate = double.tryParse(json['rating'].toString());
 
     return DoctorDto(
       lat1: json['latitude'] ?? '0',

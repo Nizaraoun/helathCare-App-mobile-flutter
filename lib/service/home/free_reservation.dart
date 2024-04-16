@@ -8,7 +8,7 @@ class ReservationService {
   String? token;
 
   Future<ReservedHoursResponse> getReservedHoursForDoctorOnDay({
-    required int idPraticien,
+    required String idPraticien,
     required String jour,
   }) async {
     // Get the token from the shared preferences

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -9,18 +7,18 @@ import 'package:sahtech/widgets/customtext.dart';
 import '../../../../controller/home/home_page/homepagecontorller.dart';
 import '../../../../widgets/customlistview.dart';
 import '../../../resources/color/color_manager.dart';
-import '../../../resources/size_config.dart';
 import 'widget/CustomDocotrDetails.dart';
-import 'widget/Skeleton.dart';
+import 'widget/skeleton.dart';
 
 class TopDoctor extends StatelessWidget {
-  TopDoctor({
+  const TopDoctor({
     super.key,
   });
-  HomePageControllerimp controller = Get.put(HomePageControllerimp());
 
   @override
   Widget build(BuildContext context) {
+    HomePageControllerimp controller = Get.put(HomePageControllerimp());
+
     return Scaffold(
         appBar: AppBar(
           iconTheme: IconThemeData(
@@ -49,7 +47,7 @@ class TopDoctor extends StatelessWidget {
             return CustomListView(
                 reverse: false,
                 direction: Axis.vertical,
-                count: controller.doctorDto.length ?? 0,
+                count: controller.doctorDto.length,
                 itemBuilder: (index) {
                   return Container(
                       width: Get.width / 1.1,

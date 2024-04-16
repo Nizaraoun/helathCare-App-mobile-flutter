@@ -1,9 +1,9 @@
+// ignore_for_file: prefer_null_aware_operators
+
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:sahtech/model/governerat.dart';
-import 'package:translator/translator.dart';
 
 import '../../controller/home/phamacy/pharmcie_controller.dart';
 

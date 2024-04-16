@@ -33,9 +33,8 @@ class PharmacyLocationsimp extends PharmacyLocations {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
       fetchPharmacy(position.latitude, position.longitude);
-    } catch (e) {
-      print('Error getting location: $e');
-    }
+      // ignore: empty_catches
+    } catch (e) {}
   }
 
   @override
@@ -56,7 +55,6 @@ class PharmacyLocationsimp extends PharmacyLocations {
 
       isLoading(false);
     } catch (e) {
-      print('Error fetching pharmacy data: $e');
       // Set isLoading to false in case of error as well
       isLoading(false);
     }

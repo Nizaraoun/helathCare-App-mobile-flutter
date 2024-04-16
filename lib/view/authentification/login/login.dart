@@ -6,8 +6,8 @@ import 'package:sahtech/view/authentification/signup/signup.dart';
 import 'package:sahtech/view/resources/color/color_manager.dart';
 
 import '../../../controller/authentification/auth_controller.dart';
-import '../../../utils/global/ValidtionInput.dart';
-import '../../../widgets/Dvider.dart';
+import '../../../utils/global/validtion_input.dart';
+import '../../../widgets/dvider.dart';
 import '../../../widgets/cusomelvatedbutton.dart';
 import '../../../widgets/custom_inkwell_widget.dart';
 import '../../../widgets/custom_text_field.dart';
@@ -100,7 +100,7 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     CustomInkWellWidget(
                         ontap: () {
-                          Get.off(SignUpScreen());
+                          Get.off(const SignUpScreen());
                         },
                         widget: CustomTextWidget(
                           Txt: 'انشاء حساب',

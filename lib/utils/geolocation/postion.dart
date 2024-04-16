@@ -1,5 +1,5 @@
 import 'package:geolocator/geolocator.dart';
-import 'package:sahtech/utils/global/snackError.dart';
+import 'package:sahtech/utils/global/snack_error.dart';
 
 determinePosition() async {
   bool serviceEnabled;

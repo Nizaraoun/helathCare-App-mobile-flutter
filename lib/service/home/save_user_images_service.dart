@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
 
-import '../../utils/global/snackError.dart';
-import '../../view/authentification/login/login.dart';
+import '../../utils/global/snack_error.dart';
 
 Future<void> saveimage(String? imagebase64, String uid) async {
   final dio = Dio();
@@ -10,7 +8,7 @@ Future<void> saveimage(String? imagebase64, String uid) async {
 
   const String url = 'http://10.0.2.2:8080/api/addProfileimg';
 
-  try {
+  try { 
     final response = await dio.post(
       url,
       data: {

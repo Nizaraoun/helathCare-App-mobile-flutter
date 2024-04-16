@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 import '../../model/doctor.dart';
-import '../../utils/global/snackError.dart';
+import '../../utils/global/snack_error.dart';
 
 Future<List<DoctorDto>> fetchtopfFiveDoctor(String Token) async {
   Dio dio = Dio();

@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+// ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart'; // Import for setting locale
 import 'package:sahtech/view/resources/color/color_manager.dart';
 import 'package:sahtech/widgets/customtext.dart';
 import '../../../../widgets/customlistview.dart';
 import '../../../controller/home/doctor/reservation_controller.dart';
-import '../../../widgets/Dvider.dart';
-import '../../resources/assets_manager.dart';
 
 class RendVous extends StatelessWidget {
-  RendVous({
+  const RendVous({
     super.key,
   });
 
-  ReservationControllerImp controller = Get.put(ReservationControllerImp());
   @override
   Widget build(BuildContext context) {
+    ReservationControllerImp controller = Get.put(ReservationControllerImp());
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [

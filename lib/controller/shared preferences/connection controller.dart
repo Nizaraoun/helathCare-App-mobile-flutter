@@ -1,15 +1,15 @@
 import 'dart:async';
-import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:sahtech/utils/global/check_internet.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../model/geolocation.dart';
 import '../../utils/app_routes.dart';
-import '../../utils/global/snackError.dart';
+import '../../utils/global/snack_error.dart';
+import '../../utils/global/token.dart';
 import '../global/user controller .dart';
 import '../home/home_page/homepagecontorller.dart';
+import '../home/profile/image_picker_controller.dart';
 
 abstract class Internetcontroller extends GetxController {
   String? resStatus;
@@ -18,6 +18,7 @@ abstract class Internetcontroller extends GetxController {
   Future<LocationModel> determinePosition();
   UserController controller = Get.put(UserController());
   HomePageControllerimp controller2 = Get.put(HomePageControllerimp());
+  ImageControllerImp controller3 = Get.put(ImageControllerImp());
 }
 
 class Internetcontrollerimp extends Internetcontroller {
@@ -54,23 +55,32 @@ class Internetcontrollerimp extends Internetcontroller {
   }
 
   @override
+  // the function that will be called in the splash screen
   initiadata() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    resStatus = sharedPreferences.getString("token");
+    // get token
+    resStatus = await Token.getToken();
+    // check internet connection
     res = await checkInternet();
 
     Timer(const Duration(seconds: 3), () async {
       if (res == true) {
         if (resStatus != null) {
+          // get user info
           await controller.GetUserinfo();
+          // get user location
           await controller.MyLocation();
+          // load image
+          await controller3.loadImage();
+          // go to home page
           AppRoutes().goToEnd(AppRoutes.home);
           update();
         } else {
-          AppRoutes().goToEnd(AppRoutes.home);
+          // go to login page
+          AppRoutes().goToEnd(AppRoutes.login);
           update();
         }
       } else {
+        // show error message
         Get.snackbar(
           "خطأ",
           "الرجاء التحقق من الاتصال بالانترنت",

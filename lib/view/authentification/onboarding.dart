@@ -76,7 +76,7 @@ class Onboarding extends StatelessWidget {
               txt: "أنشاء حساب جديد",
               color: ColorManager.red,
               onPressed: () {
-                Get.off(SignUpScreen());
+                Get.off(const SignUpScreen());
               },
             ),
           ],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sahtech/widgets/customtext.dart';
 
 import '../view/resources/color/color_manager.dart';

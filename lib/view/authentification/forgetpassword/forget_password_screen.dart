@@ -5,7 +5,6 @@ import 'package:sahtech/view/resources/color/color_manager.dart';
 import 'package:sahtech/widgets/cusomelvatedbutton.dart';
 import 'package:sahtech/widgets/customtext.dart';
 
-import '../../../widgets/custom_text_field.dart';
 import '../../../widgets/searchfiled.dart';
 
 class ForgetPassword extends StatelessWidget {

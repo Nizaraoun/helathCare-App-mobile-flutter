@@ -5,17 +5,18 @@ import 'package:get/get.dart';
 import 'package:sahtech/view/resources/color/color_manager.dart';
 
 import '../../../controller/authentification/auth_controller.dart';
-import '../../../utils/global/ValidtionInput.dart';
+import '../../../utils/global/validtion_input.dart';
 import '../../../widgets/cusomelvatedbutton.dart';
 import '../../../widgets/custom_inkwell_widget.dart';
 import '../../../widgets/customtext.dart';
 
 class SendOtp extends StatelessWidget {
-  SendOtp({super.key});
-  AthControllerImp controller = Get.put(AthControllerImp());
+  const SendOtp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AthControllerImp controller = Get.put(AthControllerImp());
+
     return Scaffold(
       extendBodyBehindAppBar: false,
       appBar: AppBar(

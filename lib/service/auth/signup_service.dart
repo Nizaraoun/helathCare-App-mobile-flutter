@@ -1,10 +1,8 @@
-import 'dart:ffi';
-
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 import '../../controller/authentification/auth_controller.dart';
-import '../../utils/global/snackError.dart';
+import '../../utils/global/snack_error.dart';
 import '../../view/authentification/login/login.dart';
 
 // ignore: non_constant_identifier_names
@@ -25,7 +23,7 @@ Future<void> Singinapi(String username, email, cin, phone, password) async {
       },
     );
     if (response.statusCode == 200) {
-      await controller.saveuserdata(username, phone, email, cin);
+      // await controller.saveuserdata(username, phone, email, cin);
 
       Get.off(LoginScreen());
     } else {

@@ -10,7 +10,6 @@ import 'package:sahtech/widgets/cusomelvatedbutton.dart';
 import '../../../controller/home/home_page/homepagecontorller.dart';
 import '../../../controller/home/phamacy/pharmcie_controller.dart';
 import '../../../model/governerat.dart';
-import '../../../service/home/pharmacylocations.dart';
 import '../../../utils/app_routes.dart';
 import '../../../widgets/custom_icone_button.dart';
 import '../../../widgets/custom_inkwell_widget.dart';
@@ -19,7 +18,7 @@ import '../../../widgets/customtext.dart';
 import '../../../widgets/searchfiled.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/size_config.dart';
-import '../doctor_screen/home_doctor.dart';
+import '../doctor_screen/doctor_profile.dart';
 import 'doctor_section/widget/CustomDocotrDetails.dart';
 import 'widget/drawer.dart';
 
@@ -36,7 +35,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       // Assign the key to the Scaffold
       key: scaffoldKey,
-      drawer: CustomDrawerWidget(),
+      drawer: const CustomDrawerWidget(),
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(10.0),
           child: Container(
@@ -317,7 +316,7 @@ class HomePage extends StatelessWidget {
                                       index: index,
                                     ));
                                     reservationController.idPraticien =
-                                        controller.doctorDto[index].id ?? 0;
+                                        controller.doctorDto[index].id ?? "0";
                                   },
                                   child: Column(children: [
                                     Container(

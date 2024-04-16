@@ -1,9 +1,6 @@
-import 'dart:ffi';
-
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-import '../../../model/reservation.dart';
 import '../../../service/home/free_reservation.dart';
 
 abstract class ReservationController extends GetxController {
@@ -12,14 +9,14 @@ abstract class ReservationController extends GetxController {
   RxInt selectedIndex = 0.obs;
   DateTime selectedDate = DateTime.now();
 
-  int idPraticien = 0;
+  String idPraticien = "0";
   int? index;
 
   RxList<bool> buttonStates = <bool>[].obs;
   RxList<String> timeSlots = <String>[].obs;
   RxList<String> reservation = <String>[].obs;
   bool isButtonEnabled = false;
-  void generateTimeSlots(DateTime selectedDate, int idPraticien);
+  void generateTimeSlots(DateTime selectedDate, String idPraticien);
   void _initializeDates();
   bool _isSameDay(DateTime date1, DateTime date2);
   void onButtonPressed(int index);
@@ -85,7 +82,7 @@ class ReservationControllerImp extends ReservationController {
   }
 
   @override
-  void generateTimeSlots(DateTime selectedDate, int idPraticien) async {
+  void generateTimeSlots(DateTime selectedDate, String idPraticien) async {
     timeSlots.clear();
     DateTime startTime =
         DateTime(selectedDate.year, selectedDate.month, selectedDate.day, 8, 0);

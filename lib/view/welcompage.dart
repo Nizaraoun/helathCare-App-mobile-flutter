@@ -10,18 +10,18 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         height: Get.height,
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Image(image: AssetImage('assets/images/doctor1.png')),
+            const Image(image: AssetImage('assets/images/doctor1.png')),
             Positioned(
               top: Get.height * 0.7,
               child: Container(
                 height: Get.height * 0.25,
                 width: Get.width * 0.9,
-                margin: EdgeInsets.only(top: 20),
+                margin: const EdgeInsets.only(top: 20),
                 decoration: BoxDecoration(
                   color: ColorManager.pink,
                   borderRadius: BorderRadius.circular(10),
@@ -42,7 +42,7 @@ class WelcomePage extends StatelessWidget {
                         color: ColorManager.primaryColor, // button color
                         child: InkWell(
                           splashColor: ColorManager.red, // inkwell color
-                          child: SizedBox(
+                          child: const SizedBox(
                             width: 56,
                             height: 56,
                             child: Icon(Icons.arrow_forward),

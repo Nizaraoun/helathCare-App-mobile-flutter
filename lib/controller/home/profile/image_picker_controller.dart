@@ -1,12 +1,10 @@
 import 'dart:io';
-
 import 'package:get/get.dart';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
-
 import '../../../service/home/save_user_images_service.dart';
 import '../../../utils/global/token.dart';
 
@@ -15,6 +13,11 @@ abstract class ImageController extends GetxController {
   saveImage(String imagePath);
   saveBase64Image(String base64Image);
   loadImage();
+  @override
+  void onInit() {
+    loadImage();
+    super.onInit();
+  }
 }
 
 class ImageControllerImp extends ImageController {
@@ -27,7 +30,6 @@ class ImageControllerImp extends ImageController {
         await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedImage != null) {
-      print(pickedImage.path);
       await saveImage(pickedImage.path);
       await loadImage();
     }
@@ -40,7 +42,6 @@ class ImageControllerImp extends ImageController {
     final File imageFile = File(imagePath);
     final bytes = await imageFile.readAsBytes();
     String? base64Image = base64Encode(bytes);
-    print(base64Image);
     //save image to local storage
     await saveBase64Image(base64Image);
     Token.getToken().then((value) {

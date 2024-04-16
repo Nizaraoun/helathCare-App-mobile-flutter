@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -61,7 +59,7 @@ class DoctorDetails extends StatelessWidget {
         Gap(spacing),
         Container(
           width: SizeUtil().calculateTextWidth(
-                controller.doctorDto[index].rate.toString() ?? " ",
+                controller.doctorDto[index].rate.toString(),
                 fontsizerating,
               ) +
               iconsizerating,

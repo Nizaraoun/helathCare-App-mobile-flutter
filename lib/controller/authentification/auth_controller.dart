@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahtech/view/authentification/login/login.dart';
-import 'package:sahtech/view/home/home%20page/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../service/auth/login_service.dart';
@@ -57,12 +56,14 @@ class AthControllerImp extends Authcontroller {
   }
 
   //save user data in shared preferences
-  saveuserdata(String username, email, cin, phone) async {
+  saveuserdata(String username, email, cin, phone, id, image) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setString("nom", username);
-    sharedPreferences.setString("mail", phone);
-    sharedPreferences.setString("phone", email);
+    sharedPreferences.setString("id", id);
+    sharedPreferences.setString("nom", email);
+    sharedPreferences.setString("mail", username);
+    sharedPreferences.setString("phone", phone);
     sharedPreferences.setString("cin", cin);
+    sharedPreferences.setString("saved_image", image);
     update();
   }
 
@@ -80,6 +81,7 @@ class AthControllerImp extends Authcontroller {
     sharedPreferences.remove("mail");
     sharedPreferences.remove("phone");
     sharedPreferences.remove("cin");
+    sharedPreferences.remove("token");
     Get.offAll(LoginScreen());
     update();
   }

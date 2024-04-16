@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
-import '../../../../resources/color/color_manager.dart';
 import 'constant.dart';
 
 class Skeleton extends StatelessWidget {

@@ -1,10 +1,11 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sahtech/utils/app_routes.dart';
 import '../../../../controller/home/map/map.dart';
-import '../../../../controller/home/phamacy/pharmcie_controller.dart';
 import '../../../../model/geolocation.dart';
 import '../../../../widgets/custom_icone_button.dart';
 import '../../../../widgets/custom_text_field.dart';

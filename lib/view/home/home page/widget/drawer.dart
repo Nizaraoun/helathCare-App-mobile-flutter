@@ -1,25 +1,23 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:sahtech/widgets/cusomelvatedbutton.dart';
 import 'package:sahtech/widgets/custom_icone_button.dart';
-
 import '../../../../controller/authentification/auth_controller.dart';
 import '../../../../controller/home/profile/image_picker_controller.dart';
 import '../../../../utils/app_routes.dart';
 import '../../../../widgets/customtext.dart';
 import '../../../resources/color/color_manager.dart';
-import '../../menu/medical_document.dart';
 
 class CustomDrawerWidget extends StatelessWidget {
-  CustomDrawerWidget({
+  const CustomDrawerWidget({
     super.key,
   });
-  ImageControllerImp controller = Get.put(ImageControllerImp());
-  AthControllerImp controller2 = Get.put(AthControllerImp());
   @override
   Widget build(BuildContext context) {
+    ImageControllerImp controller = Get.put(ImageControllerImp());
+    AthControllerImp controller2 = Get.put(AthControllerImp());
+
     return Drawer(
       clipBehavior: Clip.hardEdge,
       width: Get.width / 1.2,
@@ -57,14 +55,6 @@ class CustomDrawerWidget extends StatelessWidget {
                         icon: const Icon(Icons.edit),
                         onPressed: () async {
                           await controller.selectImage();
-                          // if (controller.image.value != null) {
-                          //   // await controller.saveImage(
-                          //   //     controller.image.value?.image as String);
-                          //   print("my image");
-                          //   print(controller.image.value?.image);
-                          //   print("my image");
-                          //   print("my image");
-                          // }
                         },
                         color: ColorManager.blackLight,
                         style: ButtonStyle(
@@ -114,9 +104,11 @@ class CustomDrawerWidget extends StatelessWidget {
                 icon: Icons.person,
               ),
               Custom_Menu_Item(
-                onTap: () {},
-                txt: "الاشعارات",
-                icon: Icons.notifications,
+                onTap: () {
+                  AppRoutes().goTo(AppRoutes.conversation);
+                },
+                txt: "المحادثات",
+                icon: Icons.message_rounded,
               ),
               Custom_Menu_Item(
                 onTap: () {},
@@ -125,7 +117,83 @@ class CustomDrawerWidget extends StatelessWidget {
               ),
               Custom_Menu_Item(
                 onTap: () {
-                  controller2.logout();
+                  showDialog(
+                      barrierDismissible: true,
+                      traversalEdgeBehavior: TraversalEdgeBehavior.parentScope,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return SizedBox(
+                            width: Get.width,
+                            height: Get.height / 2,
+                            child: AlertDialog(
+                              backgroundColor: ColorManager.white1,
+                              actionsAlignment: MainAxisAlignment.center,
+                              clipBehavior: Clip.antiAlias,
+                              alignment: Alignment.center,
+                              actions: [
+                                Column(
+                                  children: [
+                                    Gap(Get.height / 20),
+                                    CustomIconButton(
+                                      icon: const Icon(Icons.logout),
+                                      onPressed: () {},
+                                      color: ColorManager.primaryColor,
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                          ColorManager.lightGrey2,
+                                        ),
+                                        shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                          ),
+                                        ),
+                                      ),
+                                      tooltip: "الاشعارات",
+                                      iconSize: Get.width / 6.5,
+                                      alignment: Alignment.centerLeft,
+                                      visualDensity:
+                                          VisualDensity.adaptivePlatformDensity,
+                                      autofocus: true,
+                                    ),
+                                    Gap(Get.height / 20),
+                                    const CustomTextWidget(
+                                      Txt: " هل انت متأكد من تسجيل الخروج؟",
+                                      size: 16,
+                                      color: Colors.black,
+                                      fontweight: FontWeight.w600,
+                                      spacing: 0,
+                                    ),
+                                    Gap(Get.height / 20),
+                                    CustomElevatedButton(
+                                      onPressed: () {
+                                        controller2.logout();
+                                      },
+                                      txt: "تأكيد",
+                                      txtcolor: Colors.black,
+                                      color: ColorManager.primaryColor,
+                                      size: 18,
+                                      widthsize: Get.width / 2.5,
+                                      heightsize: Get.height / 15,
+                                    ),
+                                    Gap(Get.height / 42),
+                                    CustomElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      txt: "الغاء",
+                                      txtcolor: Colors.black,
+                                      color: ColorManager.lightGrey2,
+                                      size: 18,
+                                      widthsize: Get.width / 2.5,
+                                      heightsize: Get.height / 15,
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ));
+                      });
                 },
                 txt: "تسجيل الخروج",
                 txtcolor: Colors.red,
@@ -161,6 +229,7 @@ class CustomProfieImage extends StatelessWidget {
   }
 }
 
+// ignore: camel_case_types
 class Custom_Menu_Item extends StatelessWidget {
   final Function()? onTap;
   final Color color;

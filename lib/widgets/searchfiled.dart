@@ -5,6 +5,7 @@ import '../view/resources/color/color_manager.dart';
 class SerchField extends StatelessWidget {
   final TextInputType inputType;
   final double height;
+  final Color color;
   final String? Function(String?) validator;
   final IconButton icon;
   final String texthint;
@@ -14,7 +15,8 @@ class SerchField extends StatelessWidget {
       required this.inputType,
       required this.validator,
       required this.icon,
-      required this.texthint});
+      required this.texthint,
+      this.color = ColorManager.primaryColor});
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +57,7 @@ class SerchField extends StatelessWidget {
               borderRadius: BorderRadius.circular(25),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: ColorManager.primaryColor, width: 2.0),
+              borderSide: BorderSide(color: color, width: 2.0),
               borderRadius: BorderRadius.circular(25),
             ),
             hintText: texthint,

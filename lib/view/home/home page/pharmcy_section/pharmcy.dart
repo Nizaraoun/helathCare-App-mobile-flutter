@@ -1,3 +1,5 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -8,7 +10,7 @@ import '../../../../model/geolocation.dart';
 import '../../../../widgets/dropdown.dart';
 import '../../../../widgets/customtext.dart';
 import '../../../resources/size_config.dart';
-import '../doctor_section/widget/Skeleton.dart';
+import '../doctor_section/widget/skeleton.dart';
 import '../doctor_section/widget/constant.dart';
 
 class PharmacyScreen extends StatelessWidget {

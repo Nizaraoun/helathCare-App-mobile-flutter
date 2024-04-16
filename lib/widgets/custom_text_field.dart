@@ -54,7 +54,7 @@ class CustomTextFormField extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: ColorManager.blue, width: 2.0),
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(18),
             ),
             hintText: texthint,
             prefixIcon: icon,

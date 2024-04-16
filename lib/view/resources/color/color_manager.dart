@@ -91,6 +91,9 @@ class ColorManager {
 
 
   static const Color greenSuccess = Color(0xFF35D708);
+  static const Spring1 = Color(0xFF6ec979);
+  static const Spring2 = Color(0xFF8DE697);
+  static const Spring3 = Color(0xFFB6F3A8);
 
 
   // color with 80% opacity

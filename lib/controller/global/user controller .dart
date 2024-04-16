@@ -1,12 +1,10 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../utils/app_routes.dart';
 import '../../utils/geolocation/postion.dart';
-import '../../view/authentification/login/login.dart';
 import '../home/profile/image_picker_controller.dart';
 
 class UserController extends GetxController {

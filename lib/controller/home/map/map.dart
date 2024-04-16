@@ -1,9 +1,7 @@
 import 'package:flutter/services.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'dart:async';
 import 'dart:ui' as ui;
-import '../../../model/geolocation.dart';
 import '../../../model/geolocation.dart';
 import '../../shared preferences/connection controller.dart';
 
