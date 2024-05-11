@@ -36,6 +36,7 @@ class SerchField extends StatelessWidget {
           ],
         ),
         child: TextFormField(
+          scrollPhysics: const BouncingScrollPhysics(),
           textAlign: TextAlign.right,
           keyboardType: inputType,
           strutStyle: const StrutStyle(height: 1.5),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'constant.dart';
+import '../../../../resources/color/constant.dart';
 
 class Skeleton extends StatelessWidget {
   const Skeleton({super.key, this.height, this.width});

@@ -12,13 +12,16 @@ import '../view/home/home page/chat/chat_secreen.dart';
 import '../view/home/home page/doctor_section/all_top_doctor.dart';
 import '../view/home/home page/doctor_section/doctors_home_page.dart';
 import '../view/home/home page/doctor_section/widget/skeleton.dart';
+import '../view/home/home page/feed/feed_screen.dart';
 import '../view/home/home page/home.dart';
 import '../view/home/home page/hospital_section/hospital_screen.dart';
 import '../view/home/home page/lab_section/lab_section.dart';
 import '../view/home/home page/pharmcy_section/maplocation.dart';
 import '../view/home/home page/pharmcy_section/pharmcy.dart';
-import '../view/home/menu/conversation_screen.dart';
-import '../view/home/menu/medical_document.dart';
+import '../view/home/menu/appointment/appointment.dart';
+import '../view/home/menu/conversation/conversation_screen.dart';
+import '../view/home/menu/medical document/medical_document.dart';
+import '../view/home/menu/profile/profile_screen.dart';
 import '../view/home/menu/widget/custom_image.dart';
 import '../view/welcompage.dart';
 
@@ -45,6 +48,9 @@ class AppRoutes {
   static const maplocation = '/locationmap';
   static const chat = '/chat';
   static const conversation = '/conversation';
+  static const appointment = '/appointment';
+  static const profile = '/profile';
+  static const feedsScreen = '/feedsScreen';
 
 // List of services routing
   List<String> serviceRouting = [
@@ -58,10 +64,13 @@ class AppRoutes {
   List<GetPage> appRoutes = [
     GetPage(name: home, page: () => const HomePage()),
     GetPage(name: login, page: () => LoginScreen()),
+    GetPage(name: feedsScreen, page: () => const FeedScreen()),
+
     GetPage(name: register, page: () => const SignUpScreen()),
     GetPage(name: forgetPassword, page: () => const ForgetPassword()),
     GetPage(name: sendOtp, page: () => const SendOtp()),
     GetPage(name: splash, page: () => const Splash()),
+    GetPage(name: profile, page: () => const ProfieScreen()),
     GetPage(name: doctor, page: () => const DoctorScreen()),
     GetPage(name: hospital, page: () => const HospitalScreen()),
     GetPage(name: pharmacy, page: () => const PharmacyScreen()),
@@ -73,11 +82,10 @@ class AppRoutes {
     GetPage(name: topdoctor, page: () => const TopDoctor()),
     GetPage(name: skeleton, page: () => const Skeleton()),
     GetPage(name: conversation, page: () => const Conversation()),
-
+    GetPage(name: appointment, page: () => const Appointment()),
     GetPage(name: newsCardSkelton, page: () => const NewsCardSkelton()),
     GetPage(name: maplocation, page: () => const MapLocation()),
     GetPage(name: chat, page: () => ChatScreen()),
-
     // GetPage(name: doctorProfile, page: () => DoctorProfile( index: index,)),
     GetPage(name: rendVous, page: () => const RendVous()),
   ];

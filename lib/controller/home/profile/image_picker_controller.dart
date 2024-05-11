@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import '../../../service/home/save_user_images_service.dart';
-import '../../../utils/global/token.dart';
+import '../../../utils/global/userdata.dart';
 
 abstract class ImageController extends GetxController {
   selectImage();
@@ -44,7 +44,7 @@ class ImageControllerImp extends ImageController {
     String? base64Image = base64Encode(bytes);
     //save image to local storage
     await saveBase64Image(base64Image);
-    Token.getToken().then((value) {
+    UserData.getToken().then((value) {
       saveimage(base64Image, value!);
     });
     // await saveimage(base64Image, "uid");

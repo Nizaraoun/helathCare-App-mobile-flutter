@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sahtech/utils/global/userdata.dart';
+import 'package:sahtech/view/authentification/forgetpassword/send_otp_screen.dart';
 import 'package:sahtech/view/authentification/login/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../service/auth/login_service.dart';
+import '../../service/auth/opt_service.dart';
 import '../../service/auth/signup_service.dart';
 
 abstract class Authcontroller extends GetxController {
@@ -47,12 +50,12 @@ class AthControllerImp extends Authcontroller {
   }
 
 // bch nkhou les donnée mta3 l'utilisateur
-  getuserinfo() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    name = sharedPreferences.getString("nom");
-    sharedPreferences.getString("phone");
-
-    update();
+  String getuserinfo() {
+    UserData.getuserdata("nom").then((value) {
+      name = value;
+      update();
+    });
+    return name!;
   }
 
   //save user data in shared preferences
@@ -88,7 +91,14 @@ class AthControllerImp extends Authcontroller {
 
   void forgetpassword() async {
     var formdata = formstateotp.currentState;
-
-    if (formstatelogin.currentState!.validate()) {}
+    if (formstatelogin.currentState!.validate()) {
+      String otp = inputotp[0] +
+          inputotp[1] +
+          inputotp[2] +
+          inputotp[3] +
+          inputotp[4] +
+          inputotp[5];
+      otpService(otp);
+    }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:sahtech/utils/app_routes.dart';
 
 import '../../controller/authentification/auth_controller.dart';
 import '../../utils/global/snack_error.dart';
@@ -18,14 +19,13 @@ Future<void> Singinapi(String username, email, cin, phone, password) async {
         "username": email,
         "email": username,
         "cin": cin,
-        "phone": phone,
+        "phone": '+216$phone',
         "password": password,
       },
     );
     if (response.statusCode == 200) {
       // await controller.saveuserdata(username, phone, email, cin);
-
-      Get.off(LoginScreen());
+      AppRoutes().goToEnd(AppRoutes.sendOtp);
     } else {
       showSnackError("خطأ", "البريد الالكتروني مستخدم مسبقا");
     }

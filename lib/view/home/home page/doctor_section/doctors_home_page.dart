@@ -20,6 +20,7 @@ class DoctorScreen extends StatelessWidget {
     HomePageControllerimp controller = Get.put(HomePageControllerimp());
 
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
             centerTitle: true,
             title: CustomTextWidget(
@@ -111,7 +112,7 @@ class DoctorScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                       child: Image.asset(
-                                        "assets/images/doctor1.png",
+                                        "assets/images/doctor2.png",
                                         fit: BoxFit.cover,
                                       ),
                                     )),

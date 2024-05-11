@@ -11,7 +11,7 @@ import '../../../../widgets/dropdown.dart';
 import '../../../../widgets/customtext.dart';
 import '../../../resources/size_config.dart';
 import '../doctor_section/widget/skeleton.dart';
-import '../doctor_section/widget/constant.dart';
+import '../../../resources/color/constant.dart';
 
 class PharmacyScreen extends StatelessWidget {
   const PharmacyScreen({super.key});

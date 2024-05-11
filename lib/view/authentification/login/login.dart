@@ -7,6 +7,7 @@ import 'package:sahtech/view/resources/color/color_manager.dart';
 
 import '../../../controller/authentification/auth_controller.dart';
 import '../../../utils/global/validtion_input.dart';
+import '../../../widgets/auth_social_logins.dart';
 import '../../../widgets/dvider.dart';
 import '../../../widgets/cusomelvatedbutton.dart';
 import '../../../widgets/custom_inkwell_widget.dart';
@@ -136,34 +137,22 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Gap(Get.width * 0.06),
                 // google button
-                Center(
-                  child: CustomElevatedButton(
-                    size: Get.width * 0.05,
-                    widthsize: Get.width * 0.8,
-                    heightsize: Get.height * 0.07,
-                    weight: FontWeight.normal,
-                    txtcolor: ColorManager.black,
-                    bordercolor: ColorManager.black,
-                    onPressed: () {},
-                    txt: 'تسجيل الدخول بحساب جوجل',
-                    color: ColorManager.white,
-                  ),
+
+                const auth_social_logins(
+                    logo: "assets/images/google.png",
+                    text: "تسجيل الدخول بواسطة جوجل"),
+                const SizedBox(
+                  height: 20,
                 ),
-                Gap(Get.width * 0.06),
-                // facebook button
-                Center(
-                  child: CustomElevatedButton(
-                    size: Get.width * 0.05,
-                    widthsize: Get.width * 0.8,
-                    heightsize: Get.height * 0.07,
-                    weight: FontWeight.normal,
-                    bordercolor: ColorManager.black,
-                    txtcolor: ColorManager.black,
-                    onPressed: () {},
-                    txt: 'تسجيل الدخول بحساب فيسبوك',
-                    color: ColorManager.white,
-                  ),
+                const auth_social_logins(
+                    logo: "assets/images/apple.png",
+                    text: "تسجيل الدخول بواسطة ابل"),
+                const SizedBox(
+                  height: 20,
                 ),
+                const auth_social_logins(
+                    logo: "assets/images/facebook.png",
+                    text: "تسجيل الدخول بواسطة فيسبوك"),
                 Gap(Get.width * 0.06),
               ],
             ),

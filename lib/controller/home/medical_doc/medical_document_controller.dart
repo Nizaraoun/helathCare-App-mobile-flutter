@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:sahtech/model/document.dart';
 
 import '../../../service/home/medical_doc_service.dart';
-import '../../../utils/global/token.dart';
+import '../../../utils/global/userdata.dart';
 
 abstract class MedicalDocument extends GetxController {
   RxList<Document> documentDto = <Document>[].obs;
@@ -12,6 +12,7 @@ abstract class MedicalDocument extends GetxController {
   late RxBool isLoading = true.obs;
   Future<List<Document>> getdocument();
   adddocument();
+  deleteDocument(String id);
   @override
   void onInit() {
     getdocument();
@@ -25,7 +26,7 @@ class MedicalDocumentimp extends MedicalDocument {
 
   @override
   Future<List<Document>> getdocument() async {
-    token = await Token.getToken();
+    token = await UserData.getToken();
 
     try {
       List<Document> document =
@@ -43,11 +44,20 @@ class MedicalDocumentimp extends MedicalDocument {
 
   @override
   adddocument() async {
+    token = await UserData.getToken();
     var formdata = formdocument.currentState;
     if (formdata!.validate()) {
       DocumentService().addmedicaldocment(token!, docName!);
-      getdocument();
-      update();
+      await getdocument();
     }
+    update();
+  }
+
+  @override
+  deleteDocument(String id) async {
+    token = await UserData.getToken();
+    DocumentService().deleteDocument(id, token!);
+    getdocument();
+    update();
   }
 }

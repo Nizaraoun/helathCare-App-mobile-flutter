@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:sahtech/widgets/custom_icone_button.dart';
-import 'package:sahtech/widgets/custom_inkwell_widget.dart';
 
 import '../../../../widgets/customtext.dart';
 import '../../../resources/color/color_manager.dart';

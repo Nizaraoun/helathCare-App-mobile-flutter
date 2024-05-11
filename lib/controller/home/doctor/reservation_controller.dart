@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-import '../../../service/home/free_reservation.dart';
+import '../../../service/home/reservation_service.dart';
 
 abstract class ReservationController extends GetxController {
   RxList<DateTime> dates = <DateTime>[].obs;

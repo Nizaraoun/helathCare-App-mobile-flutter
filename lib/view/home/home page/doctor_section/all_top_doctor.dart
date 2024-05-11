@@ -1,7 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:sahtech/view/home/home%20page/doctor_section/widget/constant.dart';
+import 'package:sahtech/utils/app_routes.dart';
+import 'package:sahtech/utils/global/show_image.dart';
+import 'package:sahtech/view/home/doctor_screen/doctor_profile.dart';
+import 'package:sahtech/view/resources/color/constant.dart';
+import 'package:sahtech/widgets/cusomelvatedbutton.dart';
 import 'package:sahtech/widgets/customtext.dart';
 
 import '../../../../controller/home/home_page/homepagecontorller.dart';
@@ -49,6 +56,11 @@ class TopDoctor extends StatelessWidget {
                 direction: Axis.vertical,
                 count: controller.doctorDto.length,
                 itemBuilder: (index) {
+                  List<int> decodedBytes =
+                      base64.decode(controller.doctorDto[index].image!);
+                  String originalString = utf8.decode(decodedBytes);
+                  ShowImage().loadImage(originalString);
+
                   return Container(
                       width: Get.width / 1.1,
                       height: Get.height / 5.5,
@@ -67,15 +79,16 @@ class TopDoctor extends StatelessWidget {
                           Expanded(
                               flex: 3,
                               child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xffF5F5F5),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Image.asset(
-                                  "assets/images/doctor1.png",
+                                  decoration: BoxDecoration(
+                                color: const Color(0xffF5F5F5),
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
                                   fit: BoxFit.cover,
+                                  image: controller.image.value?.image ??
+                                      const AssetImage(
+                                          "assets/images/userimage.png"),
                                 ),
-                              )),
+                              ))),
                           Gap(Get.width / 20),
                           Expanded(
                               flex: 6,
@@ -96,6 +109,19 @@ class TopDoctor extends StatelessWidget {
                                 fontweightrating: FontWeight.w400,
                                 iconsizerating: Get.width / 25,
                               )),
+                          CustomElevatedButton(
+                            size: Get.width / 25,
+                            widthsize: Get.width / 30,
+                            heightsize: Get.height / 25,
+                            onPressed: () {
+                              Get.to(() => DoctorProfile(
+                                    index: index,
+                                  ));
+                            },
+                            color: ColorManager.primaryColor,
+                            txt: 'المزيد',
+                            txtcolor: ColorManager.white,
+                          )
                         ],
                       ));
                 });

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -7,9 +9,12 @@ import 'package:sahtech/widgets/cusomelvatedbutton.dart';
 import 'package:sahtech/widgets/customtext.dart';
 import '../../../controller/home/home_page/chat_controller.dart';
 import '../../../controller/home/home_page/homepagecontorller.dart';
+import '../../../model/doctor.dart';
+import '../../../utils/global/show_image.dart';
 import '../../../widgets/custom_icone_button.dart';
 import '../home page/doctor_section/widget/customdocotrdetails.dart';
 import 'rende_vous.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DoctorProfile extends StatelessWidget {
   final int index;
@@ -22,7 +27,11 @@ class DoctorProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     HomePageControllerimp controller = Get.put(HomePageControllerimp());
     ChatController chatController = Get.put(ChatController());
+    List<int> decodedBytes = base64.decode(controller.doctorDto[index].image!);
+    String originalString = utf8.decode(decodedBytes);
+    ShowImage().loadImage(originalString);
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
@@ -59,15 +68,15 @@ class DoctorProfile extends StatelessWidget {
                     Expanded(
                         flex: 3,
                         child: Container(
-                          decoration: BoxDecoration(
-                            color: const Color(0xffF5F5F5),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Image.asset(
-                            "assets/images/doctor1.png",
+                            decoration: BoxDecoration(
+                          color: const Color(0xffF5F5F5),
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
                             fit: BoxFit.cover,
+                            image: controller.image.value?.image ??
+                                const AssetImage("assets/images/userimage.png"),
                           ),
-                        )),
+                        ))),
                     Gap(Get.width / 20),
                     Expanded(
                         flex: 6,
@@ -98,10 +107,18 @@ class DoctorProfile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CustomIconButton(
-                    icon: const Icon(Icons.message_outlined),
+                    icon: const Icon(FontAwesomeIcons.facebookMessenger),
                     onPressed: () {
-                      chatController.doctorname =
-                          controller.doctorDto[index].name;
+                      chatController.doctorList.add(
+                        DoctorDto(
+                          id: controller.doctorDto[index].id,
+                          name: controller.doctorDto[index].name,
+                          speciality: controller.doctorDto[index].speciality,
+                        ),
+                      );
+                      chatController
+                          .getMessagesById(controller.doctorDto[index].id!);
+
                       AppRoutes().goTo(
                         AppRoutes.chat,
                       );

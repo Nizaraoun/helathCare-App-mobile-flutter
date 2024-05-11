@@ -93,7 +93,7 @@ class RendVous extends StatelessWidget {
           if (controller.timeSlots.isEmpty) {
             return Image.asset(
               filterQuality: FilterQuality.high,
-              "assets/images/clander.png",
+              "assets/images/calendar.png",
               width: Get.width * 0.7,
               height: Get.height * 0.4,
             );

@@ -12,7 +12,19 @@ class ColorManager {
   static const Color primaryColor = Color.fromRGBO(25, 154, 142, 1);
 
 
+  static const purple1 = Color.fromARGB(255, 103, 125, 251);
+
+
+  static const purple2 = Color(0xFF8395f9);
+
+
+  static const purple3 = Color(0xFF989ede);
+
+
   static Color transparent = Colors.transparent;
+
+
+  static Color transparent1 = const Color.fromARGB(7, 0, 0, 0);
 
 
   static Color pink = const Color.fromARGB(255, 255, 236, 242);
@@ -69,6 +81,9 @@ class ColorManager {
   static Color lightBlue = const Color(0xFF90CAF9);
 
 
+  static Color lightBlue2 = const Color.fromARGB(96, 159, 234, 255);
+
+
   static Color blue = const Color(0xff2C8BFF);
 
 
@@ -91,9 +106,27 @@ class ColorManager {
 
 
   static const Color greenSuccess = Color(0xFF35D708);
+
+
   static const Spring1 = Color(0xFF6ec979);
+
+
   static const Spring2 = Color(0xFF8DE697);
+
+
   static const Spring3 = Color(0xFFB6F3A8);
+
+
+  static const Clouds1 = Color(0xFFf5feff);
+
+
+  static const Clouds4 = Color.fromARGB(255, 247, 251, 253);
+
+
+  static const Clouds2 = Color(0xFFdaeef0);
+
+
+  static const Clouds3 = Color(0xFFb2d8db);
 
 
   // color with 80% opacity
@@ -105,13 +138,40 @@ class ColorManager {
   static Color grey2 = const Color(0xff797979);
 
 
+  static Color grey3 = const Color.fromARGB(255, 216, 224, 231);
+
+
+  static Color bordergrey = const Color.fromARGB(255, 231, 216, 196);
+
+
+  static Color move = const Color.fromARGB(255, 239, 219, 245);
+
+
   static const Color whitePrimary = Color(0xffd5d5d5);
 
 
   static const Color white = Color(0xffFFFFFF);
 
 
+  static Color white3 = const Color.fromARGB(255, 234, 238, 241);
+
+
+  static const Color white2 = Color.fromARGB(255, 248, 252, 254);
+
+
   static const Color whiteLight = Color(0xfff3f7ff);
+
+
+  static const Color move1 = Color.fromARGB(255, 251, 241, 253);
+
+
+  static const Color move2 = Color.fromARGB(255, 196, 112, 208);
+
+
+  static const Color greenbtn1 = Color.fromARGB(255, 238, 250, 248);
+
+
+  static const Color greenbtn2 = Color.fromARGB(255, 54, 198, 172);
 
 
   static const Color white70 = Colors.white70;

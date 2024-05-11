@@ -10,15 +10,15 @@ class DoctorDto {
   final double? rate;
 
   DoctorDto({
-    required this.lat1,
-    required this.lon1,
+    this.lat1,
+    this.lon1,
     required this.name,
     required this.speciality,
-    required this.phone,
-    required this.email,
-    required this.image,
-    required this.id,
-    required this.rate,
+    this.phone,
+    this.email,
+    this.image,
+    this.id,
+    this.rate,
   });
 
   factory DoctorDto.fromJson(Map<String?, dynamic> json) {

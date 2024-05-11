@@ -21,7 +21,7 @@ class SendOtp extends StatelessWidget {
       extendBodyBehindAppBar: false,
       appBar: AppBar(
         title: CustomTextWidget(
-          Txt: '  أدخل رمز التحقق',
+          Txt: 'أدخل رمز التحقق',
           color: Colors.black,
           fontweight: FontWeight.bold,
           size: Get.width * 0.05,
@@ -113,19 +113,19 @@ class SendOtp extends StatelessWidget {
                 ],
               ),
             ),
-            Gap(Get.height * 0.07),
+            Gap(Get.height * 0.06),
             CustomElevatedButton(
               size: Get.width * 0.05,
               bordercolor: Colors.grey,
               color: ColorManager.primaryColor,
-              txt: 'أستعادة كلمة المرور',
+              txt: 'تأكيد',
               heightsize: Get.height * 0.07,
               widthsize: Get.width * 0.5,
               onPressed: () {
                 controller.forgetpassword();
               },
             ),
-            Gap(Get.height * 0.02),
+            Gap(Get.height * 0.03),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

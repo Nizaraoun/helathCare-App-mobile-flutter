@@ -6,14 +6,13 @@ import 'package:sahtech/utils/global/check_internet.dart';
 import '../../model/geolocation.dart';
 import '../../utils/app_routes.dart';
 import '../../utils/global/snack_error.dart';
-import '../../utils/global/token.dart';
+import '../../utils/global/userdata.dart';
 import '../global/user controller .dart';
 import '../home/home_page/homepagecontorller.dart';
 import '../home/profile/image_picker_controller.dart';
 
 abstract class Internetcontroller extends GetxController {
   String? resStatus;
-  var res = false;
   initiadata();
   Future<LocationModel> determinePosition();
   UserController controller = Get.put(UserController());
@@ -58,12 +57,12 @@ class Internetcontrollerimp extends Internetcontroller {
   // the function that will be called in the splash screen
   initiadata() async {
     // get token
-    resStatus = await Token.getToken();
+    resStatus = await UserData.getToken();
     // check internet connection
-    res = await checkInternet();
+    // res = await checkInternet();
 
     Timer(const Duration(seconds: 3), () async {
-      if (res == true) {
+   
         if (resStatus != null) {
           // get user info
           await controller.GetUserinfo();
@@ -76,35 +75,10 @@ class Internetcontrollerimp extends Internetcontroller {
           update();
         } else {
           // go to login page
-          AppRoutes().goToEnd(AppRoutes.login);
+          AppRoutes().goToEnd(AppRoutes.welcomePage);
           update();
-        }
-      } else {
-        // show error message
-        Get.snackbar(
-          "خطأ",
-          "الرجاء التحقق من الاتصال بالانترنت",
-          boxShadows: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.25),
-              spreadRadius: 0,
-              blurRadius: 2,
-              offset: const Offset(0, 4),
-            ),
-          ],
-          animationDuration: const Duration(seconds: 2),
-          titleText: const Text(
-            "خطأ",
-            style: TextStyle(
-              color: Color.fromARGB(255, 4, 4, 4),
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          duration: const Duration(seconds: 2),
-          overlayBlur: 2,
-        );
-      }
+        
+      } 
     });
 
     update();

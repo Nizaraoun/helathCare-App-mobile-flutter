@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahtech/view/resources/color/color_manager.dart';
+import 'package:sahtech/widgets/customtext.dart';
 
 import '../utils/app_routes.dart';
 
@@ -27,16 +28,18 @@ class WelcomePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(
-                      ' Consult only with a doctor you trust ',
-                      style: TextStyle(
-                        fontSize: Get.width * 0.06,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    CustomTextWidget(
+                      Txt:
+                          'طبيبك هو شريكك في الرعاية الصحية\n. يجب عليك البحث عن طبيب تثق به تمامًا\n، فهو الذي سيساعدك في فهم حالتك الصحية واختيار العلاج المناسب بالنسبة لك.',
+                      size: 20,
+                      color: ColorManager.black,
+                      spacing: 0,
+                      fontfamily: 'Cairo',
+                      fontweight: FontWeight.bold,
                     ),
+                    const Spacer(),
                     ClipOval(
                       child: Material(
                         color: ColorManager.primaryColor, // button color

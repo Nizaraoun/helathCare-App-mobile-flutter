@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:sahtech/widgets/cusomelvatedbutton.dart';
+import 'package:sahtech/controller/home/home_page/chat_controller.dart';
 import 'package:sahtech/widgets/custom_icone_button.dart';
 import '../../../../controller/authentification/auth_controller.dart';
 import '../../../../controller/home/profile/image_picker_controller.dart';
 import '../../../../utils/app_routes.dart';
+import '../../../../widgets/custom_alert_dialog.dart';
 import '../../../../widgets/customtext.dart';
 import '../../../resources/color/color_manager.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomDrawerWidget extends StatelessWidget {
   const CustomDrawerWidget({
@@ -17,6 +19,8 @@ class CustomDrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     ImageControllerImp controller = Get.put(ImageControllerImp());
     AthControllerImp controller2 = Get.put(AthControllerImp());
+    ChatController chatController = Get.put(ChatController());
+    // ChatController chatController = Get.put(ChatController());
 
     return Drawer(
       clipBehavior: Clip.hardEdge,
@@ -75,9 +79,10 @@ class CustomDrawerWidget extends StatelessWidget {
                       ))
                 ],
               ),
-              const Gap(30),
+
+              const Gap(25),
               CustomTextWidget(
-                Txt: controller2.name ?? "Nizar Aoun",
+                Txt: controller2.getuserinfo(),
                 size: Get.width / 16,
                 color: Colors.white,
                 fontweight: FontWeight.bold,
@@ -92,9 +97,11 @@ class CustomDrawerWidget extends StatelessWidget {
           Column(
             children: [
               Custom_Menu_Item(
-                onTap: () {},
-                txt: "الصفحة الرئيسية",
-                icon: Icons.home,
+                onTap: () {
+                  AppRoutes().goTo(AppRoutes.feedsScreen);
+                },
+                txt: "المنشورات",
+                icon: FontAwesomeIcons.newspaper,
               ),
               Custom_Menu_Item(
                 onTap: () {
@@ -104,14 +111,22 @@ class CustomDrawerWidget extends StatelessWidget {
                 icon: Icons.person,
               ),
               Custom_Menu_Item(
-                onTap: () {
-                  AppRoutes().goTo(AppRoutes.conversation);
-                },
-                txt: "المحادثات",
-                icon: Icons.message_rounded,
-              ),
+                  onTap: () {
+                    chatController.getChatList();
+                    AppRoutes().goTo(AppRoutes.conversation);
+                  },
+                  txt: "المحادثات",
+                  icon: FontAwesomeIcons.facebookMessenger),
               Custom_Menu_Item(
-                onTap: () {},
+                  onTap: () {
+                    AppRoutes().goTo(AppRoutes.appointment);
+                  },
+                  txt: "المواعيد",
+                  icon: FontAwesomeIcons.calendarDay),
+              Custom_Menu_Item(
+                onTap: () {
+                  AppRoutes().goTo(AppRoutes.profile);
+                },
                 txt: "الاعدادات",
                 icon: Icons.settings,
               ),
@@ -125,73 +140,13 @@ class CustomDrawerWidget extends StatelessWidget {
                         return SizedBox(
                             width: Get.width,
                             height: Get.height / 2,
-                            child: AlertDialog(
-                              backgroundColor: ColorManager.white1,
-                              actionsAlignment: MainAxisAlignment.center,
-                              clipBehavior: Clip.antiAlias,
-                              alignment: Alignment.center,
-                              actions: [
-                                Column(
-                                  children: [
-                                    Gap(Get.height / 20),
-                                    CustomIconButton(
-                                      icon: const Icon(Icons.logout),
-                                      onPressed: () {},
-                                      color: ColorManager.primaryColor,
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                          ColorManager.lightGrey2,
-                                        ),
-                                        shape: MaterialStateProperty.all(
-                                          RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                          ),
-                                        ),
-                                      ),
-                                      tooltip: "الاشعارات",
-                                      iconSize: Get.width / 6.5,
-                                      alignment: Alignment.centerLeft,
-                                      visualDensity:
-                                          VisualDensity.adaptivePlatformDensity,
-                                      autofocus: true,
-                                    ),
-                                    Gap(Get.height / 20),
-                                    const CustomTextWidget(
-                                      Txt: " هل انت متأكد من تسجيل الخروج؟",
-                                      size: 16,
-                                      color: Colors.black,
-                                      fontweight: FontWeight.w600,
-                                      spacing: 0,
-                                    ),
-                                    Gap(Get.height / 20),
-                                    CustomElevatedButton(
-                                      onPressed: () {
-                                        controller2.logout();
-                                      },
-                                      txt: "تأكيد",
-                                      txtcolor: Colors.black,
-                                      color: ColorManager.primaryColor,
-                                      size: 18,
-                                      widthsize: Get.width / 2.5,
-                                      heightsize: Get.height / 15,
-                                    ),
-                                    Gap(Get.height / 42),
-                                    CustomElevatedButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      txt: "الغاء",
-                                      txtcolor: Colors.black,
-                                      color: ColorManager.lightGrey2,
-                                      size: 18,
-                                      widthsize: Get.width / 2.5,
-                                      heightsize: Get.height / 15,
-                                    ),
-                                  ],
-                                )
-                              ],
+                            child: CustomAlertDialog(
+                              onpressed: () {
+                                controller2.logout();
+                              },
+                              title: "هل انت متأكد من تسجيل الخروج؟",
+                              icone: FontAwesomeIcons.signOutAlt,
+                              color: ColorManager.primaryColor,
                             ));
                       });
                 },
@@ -267,7 +222,7 @@ class Custom_Menu_Item extends StatelessWidget {
               child: Icon(
                 icon,
                 color: color,
-                shadows: const [Shadow(color: Colors.black, blurRadius: 6)],
+                shadows: const [Shadow(color: Colors.black, blurRadius: 2)],
                 size: Get.width / 12,
               ),
             ),

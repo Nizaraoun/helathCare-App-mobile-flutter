@@ -7,14 +7,10 @@ import '../../../utils/global/check_internet.dart';
 
 class Otpcontroller extends GetxController {
   var res;
-
   initiadata() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
     String? Res = sharedPreferences.getString("Status");
-
     res = await checkInternet();
-
     Timer(const Duration(seconds: 3), () {
       if (res == true) {
         if (Res != null) {
