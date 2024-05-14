@@ -3,16 +3,18 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:sahtech/controller/home/doctor/reservation_controller.dart';
 import 'package:sahtech/utils/app_routes.dart';
+import 'package:sahtech/view/home/menu/appointment/confirmation.dart';
 import 'package:sahtech/view/resources/color/color_manager.dart';
 import 'package:sahtech/widgets/cusomelvatedbutton.dart';
 import 'package:sahtech/widgets/customtext.dart';
-import '../../../controller/home/home_page/chat_controller.dart';
-import '../../../controller/home/home_page/homepagecontorller.dart';
-import '../../../model/doctor.dart';
-import '../../../utils/global/show_image.dart';
-import '../../../widgets/custom_icone_button.dart';
-import '../home page/doctor_section/widget/customdocotrdetails.dart';
+import '../../../../../controller/home/home_page/chat_controller.dart';
+import '../../../../../controller/home/home_page/homepagecontorller.dart';
+import '../../../../../model/doctor.dart';
+import '../../../../../utils/global/show_image.dart';
+import '../../../../../widgets/custom_icone_button.dart';
+import '../../../home page/doctor_section/widget/CustomDocotrDetails.dart';
 import 'rende_vous.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -26,6 +28,7 @@ class DoctorProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomePageControllerimp controller = Get.put(HomePageControllerimp());
+    ReservationControllerImp controller1 = Get.put(ReservationControllerImp());
     ChatController chatController = Get.put(ChatController());
     List<int> decodedBytes = base64.decode(controller.doctorDto[index].image!);
     String originalString = utf8.decode(decodedBytes);
@@ -149,7 +152,15 @@ class DoctorProfile extends StatelessWidget {
                       widthsize: Get.width / 1.5,
                       bordercolor: ColorManager.primaryColor,
                       weight: FontWeight.bold,
-                      onPressed: () {})
+                      onPressed: () {
+                        Get.to(() => ConfirmationAppointment(
+                          date: controller1.selectedDate.toString().split(' ')[0],
+                          time: controller1.timeSlots[controller1.reservation[0]],
+                              doctorName: controller.doctorDto[index].name!,
+                              speciality:
+                                  controller.doctorDto[index].speciality!,
+                            ));
+                      })
                 ],
               ),
             ),

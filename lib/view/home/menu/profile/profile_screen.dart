@@ -44,8 +44,7 @@ class ProfieScreen extends StatelessWidget {
                         Icons.arrow_back_ios_outlined,
                       ),
                       onPressed: () {
-                        Get.back();
-
+                        AppRoutes().goTo(AppRoutes.home);
                         // Navigator.pop(context);
                       },
                       alignment: Alignment.center,
@@ -218,7 +217,7 @@ class ProfieScreen extends StatelessWidget {
                               const Gap(10),
                               GestureDetector(
                                 onTap: () {
-                                  //AppRoutes().goTo(AppRoutes.newpassword);
+                                  AppRoutes().goTo(AppRoutes.newpassword);
                                 },
                                 child: Row(
                                   textDirection: TextDirection.rtl,

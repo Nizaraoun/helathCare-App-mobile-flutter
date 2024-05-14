@@ -8,6 +8,7 @@ class AssetsManager {
 
   static const String splashLogo = "$imagePath/splash_logo.png";
 
+
   static const String calendar = "$imagePath/calendar.png";
 
 
@@ -37,6 +38,9 @@ class Categoryassets {
 
 
   static String tooth = "${imagePath}tooth.png";
+static String enfance = "${imagePath}enfance.png";
+static String general = "${imagePath}generalist.png";
+static String psy = "${imagePath}therapy.png";
 
 }
 
@@ -47,9 +51,9 @@ class Serviceassets {
 
     "stethoscope",
 
-    "hospital",
-
     "pharmacy",
+    
+    "hospital",
 
     "labo",
 

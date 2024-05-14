@@ -64,4 +64,29 @@ class DocumentService {
       showSnackError("عفوا", "حدث خطأ ما اثناء البحث عن الملفات الطبية");
     }
   }
+
+  Future<void> addFileToDocument(
+      String id, String token, String docName) async {
+    Dio dio = Dio();
+    dio.options.headers['Authorization'] = 'Bearer $token';
+    const String url = 'http://10.0.2.2:8080/api/add-medical-file';
+    try {
+      print(id);
+      print(token);
+      final response = await dio.post(
+        url,
+        data: {
+          "id": id,
+          "txt": docName,
+        },
+      );
+      if (response.statusCode == 200) {
+        Get.back();
+      } else {
+        showSnackError("خطأ", "عفوا ليس لديك ملف بنفس الاسم مسبقا");
+      }
+    } catch (e) {
+      showSnackError("خطأ", " خطأ اثناء اضافة الملف الطبي");
+    }
+  }
 }

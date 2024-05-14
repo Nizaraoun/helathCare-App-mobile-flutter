@@ -23,15 +23,7 @@ class MedicalDoc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // String? selectedValue;
-
-    // final List<String> genderItems = [
-    //   'Male',
-    //   'Female',
-    // ];
-    ImageControllerImp controller = Get.put(ImageControllerImp());
     MedicalDocumentimp documentcontroller = Get.put(MedicalDocumentimp());
-    
 
     return Scaffold(
       backgroundColor: ColorManager.white,
@@ -46,23 +38,37 @@ class MedicalDoc extends StatelessWidget {
         backgroundColor: ColorManager.darkOrange,
         children: [
           SpeedDialChild(
-            child: const Icon(Icons.camera_alt_rounded),
-            backgroundColor: ColorManager.darkOrange,
-            label: 'الكاميرا',
-            labelStyle: const TextStyle(fontSize: 18.0),
-            onTap: () async {
-              await controller.selectImage();
-              if (controller.image.value != null) {}
-            },
-          ),
+              child: const Icon(Icons.camera_alt_rounded),
+              backgroundColor: ColorManager.darkOrange,
+              label: 'الكاميرا',
+              labelStyle: const TextStyle(fontSize: 18.0),
+              onTap: () async {
+                showDialog(
+                    barrierDismissible: true,
+                    traversalEdgeBehavior: TraversalEdgeBehavior.closedLoop,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return SizedBox(
+                        width: Get.width,
+                        height: Get.height / 9,
+                        child: CustomAlertDialog(
+                            onpressed: () {
+                              Get.back();
+                            },
+                            title: " هذا الجهاز لا يحتوي على كاميرا  ",
+                            icone: FontAwesomeIcons.cameraAlt,
+                            color: ColorManager.red),
+                      );
+                    });
+              }),
           SpeedDialChild(
             child: const Icon(Icons.photo),
             backgroundColor: ColorManager.darkOrange,
             label: 'الصور',
             labelStyle: const TextStyle(fontSize: 18.0),
             onTap: () async {
-              await controller.selectImage();
-              if (controller.image.value != null) {}
+              await documentcontroller.selectImageFile();
+              if (documentcontroller.image.value != null) {}
             },
           ),
         ],
@@ -107,7 +113,6 @@ class MedicalDoc extends StatelessWidget {
                       barrierDismissible: true,
                       traversalEdgeBehavior: TraversalEdgeBehavior.parentScope,
                       context: context,
-                      
                       builder: (BuildContext context) {
                         return SizedBox(
                           width: Get.width * 0.9,
@@ -214,6 +219,10 @@ class MedicalDoc extends StatelessWidget {
                               children: [
                                 GestureDetector(
                                   onTap: () {
+                                    documentcontroller.selectedDocId.value =
+                                        documentcontroller
+                                            .documentDto[index].id!;
+
                                     documentcontroller.selectedDoc.value =
                                         documentcontroller
                                             .documentDto[index].name

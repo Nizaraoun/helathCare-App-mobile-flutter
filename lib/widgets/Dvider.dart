@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import '../view/resources/color/color_manager.dart';
 
 class DividerWidget extends StatelessWidget {
+  final Color color;
   const DividerWidget({
+    this.color = ColorManager.grayColor,
     super.key,
   });
 
@@ -16,7 +18,7 @@ class DividerWidget extends StatelessWidget {
         thickness: Get.width * 0.002,
         indent: Get.width * 0.03,
         endIndent: Get.width * 0.03,
-        color: ColorManager.grey,
+        color: color,
       ),
     );
   }

@@ -3,14 +3,14 @@ import 'package:dio/dio.dart';
 import '../../model/doctor.dart';
 import '../../utils/global/snack_error.dart';
 
-Future<List<DoctorDto>> fetchtopfFiveDoctor(String Token) async {
+Future<List<DoctorDto>> fetchBySpecialty(String token,  String  speciality) async {
   Dio dio = Dio();
-  dio.options.headers['Authorization'] = 'Bearer $Token';
+  dio.options.headers['Authorization'] = 'Bearer $token';
 
-  const String url = 'http://10.0.2.2:8080/api/recommended_doctors';
+  const String url = 'http://10.0.2.2:8080/api/get_doctor_By_Speciality';
 
   try {
-    final response = await dio.get(url);
+    final response = await dio.get(url,queryParameters: {"speciality":speciality});
     if (response.statusCode == 200) {
       // Extract data from the response
 
@@ -25,5 +25,3 @@ Future<List<DoctorDto>> fetchtopfFiveDoctor(String Token) async {
   }
   return [];
 }
-
-

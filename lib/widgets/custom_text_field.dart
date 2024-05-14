@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../view/resources/color/color_manager.dart';
 
 class CustomTextFormField extends StatelessWidget {
+  final bool obscureText ;
   final TextInputType inputType;
   final String? Function(String?) validator;
   final Icon icon;
@@ -12,7 +13,7 @@ class CustomTextFormField extends StatelessWidget {
       required this.icon,
       required this.texthint,
       required this.inputType,
-      required this.validator});
+      required this.validator,  this.obscureText = false});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,7 @@ class CustomTextFormField extends StatelessWidget {
           ],
         ),
         child: TextFormField(
+          obscureText: obscureText,
           textAlign: TextAlign.right,
           keyboardType: inputType,
           strutStyle: const StrutStyle(height: 1.5),

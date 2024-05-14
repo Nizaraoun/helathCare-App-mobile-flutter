@@ -6,7 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:sahtech/utils/app_routes.dart';
 import 'package:sahtech/utils/global/show_image.dart';
-import 'package:sahtech/view/home/doctor_screen/doctor_profile.dart';
+import 'package:sahtech/view/home/menu/appointment/doctor_screen/doctor_profile.dart';
 import 'package:sahtech/view/resources/color/constant.dart';
 import 'package:sahtech/widgets/cusomelvatedbutton.dart';
 import 'package:sahtech/widgets/customtext.dart';

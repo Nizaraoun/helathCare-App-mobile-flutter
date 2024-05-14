@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart'; // Import for setting locale
 import 'package:sahtech/view/resources/color/color_manager.dart';
-import '../../../../widgets/customlistview.dart';
+import '../../../../../../widgets/customlistview.dart';
 
 class JourWidget extends StatefulWidget {
   const JourWidget({super.key});

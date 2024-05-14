@@ -3,16 +3,19 @@ import 'package:sahtech/splash_screen.dart';
 import 'package:sahtech/view/authentification/login/login.dart';
 import 'package:sahtech/view/authentification/onboarding.dart';
 import 'package:sahtech/view/authentification/signup/signup.dart';
+import 'package:sahtech/view/home/menu/appointment/confirmation.dart';
 
 import '../view/authentification/forgetpassword/forget_password_screen.dart';
+import '../view/authentification/forgetpassword/new_password_screen.dart';
 import '../view/authentification/forgetpassword/send_otp_screen.dart';
-import '../view/home/doctor_screen/rende_vous.dart';
+import '../view/home/menu/appointment/doctor_screen/rende_vous.dart';
 import '../view/home/home page/ambulance_section/ambulance_secreen.dart';
 import '../view/home/home page/chat/chat_secreen.dart';
 import '../view/home/home page/doctor_section/all_top_doctor.dart';
 import '../view/home/home page/doctor_section/doctors_home_page.dart';
 import '../view/home/home page/doctor_section/widget/skeleton.dart';
 import '../view/home/home page/feed/feed_screen.dart';
+import '../view/home/home page/feed/pub_screen.dart';
 import '../view/home/home page/home.dart';
 import '../view/home/home page/hospital_section/hospital_screen.dart';
 import '../view/home/home page/lab_section/lab_section.dart';
@@ -31,6 +34,7 @@ class AppRoutes {
   static const login = '/login';
   static const register = '/register';
   static const forgetPassword = '/forgetPassword';
+  static const newpassword = '/newpassword';
   static const sendOtp = '/sendOtp';
   static const doctor = '/doctor';
   static const hospital = '/hospital';
@@ -50,22 +54,24 @@ class AppRoutes {
   static const conversation = '/conversation';
   static const appointment = '/appointment';
   static const profile = '/profile';
+  static const publication = '/publication';
   static const feedsScreen = '/feedsScreen';
+  static const confirmation = '/confirmation';
 
 // List of services routing
   List<String> serviceRouting = [
     "/doctor",
-    "/hospital",
     "/pharmacy",
+    "/hospital",
     "/lab",
     "/ambulance",
   ];
 
   List<GetPage> appRoutes = [
     GetPage(name: home, page: () => const HomePage()),
+    GetPage(name: newpassword, page: () => const NewPassword()),
     GetPage(name: login, page: () => LoginScreen()),
     GetPage(name: feedsScreen, page: () => const FeedScreen()),
-
     GetPage(name: register, page: () => const SignUpScreen()),
     GetPage(name: forgetPassword, page: () => const ForgetPassword()),
     GetPage(name: sendOtp, page: () => const SendOtp()),
@@ -88,6 +94,7 @@ class AppRoutes {
     GetPage(name: chat, page: () => ChatScreen()),
     // GetPage(name: doctorProfile, page: () => DoctorProfile( index: index,)),
     GetPage(name: rendVous, page: () => const RendVous()),
+    // GetPage(name: confirmation, page: () =>  ConfirmationAppointment()),
   ];
 
 // Routing method to navigate

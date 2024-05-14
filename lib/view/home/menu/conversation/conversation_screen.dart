@@ -69,7 +69,7 @@ class Conversation extends StatelessWidget {
                             icon: const Icon(Icons.notifications),
                             onPressed: () {},
                             color: ColorManager.blackLight,
-                            tooltip: "الرجوع",
+                            tooltip: "الاشعارات",
                             iconSize: Get.width / 14,
                             alignment: Alignment.centerRight,
                             visualDensity:
@@ -136,6 +136,9 @@ class Conversation extends StatelessWidget {
 
                                     return GestureDetector(
                                       onTap: () {
+                                        chatController.doctorList.clear();
+                                        chatController.messages.clear();
+
                                         chatController
                                             .createAblyRealtimeInstance();
                                         chatController.getMessagesById(

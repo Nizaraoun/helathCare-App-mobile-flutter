@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:sahtech/controller/home/feed/feed_controller.dart';
 import 'package:sahtech/model/feed.dart';
 
+import '../../model/comment.dart';
 import '../../utils/global/userdata.dart';
 
 class FeedsService {
@@ -17,14 +15,32 @@ class FeedsService {
     try {
       final response = await dio.get(url, queryParameters: {'role': role});
       if (response.statusCode == 200) {
-        print('response.data: ${response.data}');
         List<dynamic> responseData = response.data;
-        // Map the response data to a list of DoctorDto objects
-
         List<Feed> feeds =
             responseData.map((json) => Feed.fromJson(json)).toList();
 
-        print('feeds: $feeds');
+        return feeds;
+      } else {
+        throw Exception('Failed to get reserved hours for doctor on day');
+      }
+    } catch (e) {
+      throw Exception('Failed to get reserved hours for doctor on day: $e');
+    }
+  }
+
+  // get comment
+  Future<List<Commenter>> getcomment(int pubId) async {
+    token = await UserData.getToken();
+    dio.options.headers['Authorization'] = 'Bearer $token';
+    const String url = 'http://10.0.2.2:8080/api/get-all-comments';
+
+    try {
+      final response = await dio.get(url, queryParameters: {'postId': pubId});
+      if (response.statusCode == 200) {
+        List<dynamic> responseData = response.data;
+        List<Commenter> feeds =
+            responseData.map((json) => Commenter.fromJson(json)).toList();
+
         return feeds;
       } else {
         throw Exception('Failed to get reserved hours for doctor on day');

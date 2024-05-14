@@ -25,7 +25,7 @@ import '../../../widgets/searchfiled.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color/constant.dart';
 import '../../resources/size_config.dart';
-import '../doctor_screen/doctor_profile.dart';
+import '../menu/appointment/doctor_screen/doctor_profile.dart';
 import 'doctor_section/widget/CustomDocotrDetails.dart';
 import 'widget/drawer.dart';
 
@@ -66,7 +66,7 @@ class HomePage extends StatelessWidget {
             ),
           )),
       body: FutureBuilder(
-        future: Future.delayed(const Duration(seconds: 1)),
+        future: Future.delayed(const Duration(seconds: 0)),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             // While waiting for the 5 seconds, display the Lottie animation
@@ -116,6 +116,59 @@ class HomePage extends StatelessWidget {
                               );
                             }
                           }),
+                          Gap(Get.width / 30),
+                          CustomIconButton(
+                            icon: const Icon(FontAwesomeIcons.bell),
+                            onPressed: () {},
+                            color: ColorManager.primaryColor,
+                            style: ButtonStyle(
+                              shadowColor: MaterialStateProperty.all(
+                                ColorManager.lightGrey2,
+                              ),
+                              backgroundColor: MaterialStateProperty.all(
+                                ColorManager.lightGrey2,
+                              ),
+                              shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(40),
+                                ),
+                              ),
+                            ),
+                            tooltip: "الاشعارات",
+                            iconSize: Get.width / 18,
+                            alignment: Alignment.centerLeft,
+                            visualDensity:
+                                VisualDensity.adaptivePlatformDensity,
+                            autofocus: true,
+                          ),
+                          Gap(Get.width / 45),
+                          CustomIconButton(
+                            icon:
+                                const Icon(FontAwesomeIcons.facebookMessenger),
+                            onPressed: () {
+                              AppRoutes().goTo(AppRoutes.conversation);
+                            },
+                            color: ColorManager.blueprimaryColor,
+                            style: ButtonStyle(
+                              shadowColor: MaterialStateProperty.all(
+                                ColorManager.lightGrey2,
+                              ),
+                              backgroundColor: MaterialStateProperty.all(
+                                ColorManager.lightGrey2,
+                              ),
+                              shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(40),
+                                ),
+                              ),
+                            ),
+                            tooltip: "الاشعارات",
+                            iconSize: Get.width / 18,
+                            alignment: Alignment.centerLeft,
+                            visualDensity:
+                                VisualDensity.adaptivePlatformDensity,
+                            autofocus: true,
+                          ),
                           const Spacer(),
                           CustomIconButton(
                             icon: const Icon(Icons.menu_rounded),
@@ -124,6 +177,9 @@ class HomePage extends StatelessWidget {
                             },
                             color: ColorManager.blackLight,
                             style: ButtonStyle(
+                              shadowColor: MaterialStateProperty.all(
+                                ColorManager.lightGrey2,
+                              ),
                               backgroundColor: MaterialStateProperty.all(
                                 ColorManager.lightGrey2,
                               ),
@@ -163,7 +219,7 @@ class HomePage extends StatelessWidget {
                             icon: const Icon(Icons.search_rounded),
                             onPressed: () {},
                           ),
-                          texthint: "اطباء ,  دواء ,   بحث",
+                          texthint: "اطباء ,  بحث",
                           inputType: TextInputType.text,
                           validator: (value) {
                             return null;
@@ -206,12 +262,12 @@ class HomePage extends StatelessWidget {
                                     Image.asset(
                                       "$imagePath${Serviceassets().serviceassets[index]}.png",
                                       width: Get.width / 5,
-                                      height: Get.height / 12,
+                                      height: Get.height / 13,
                                     ),
                                     const Gap(10),
                                     CustomTextWidget(
                                       Txt: StringsManager().servicelist[index],
-                                      size: Get.width / 16,
+                                      size: Get.width / 17,
                                       color: ColorManager.grey2,
                                       fontweight: FontWeight.w500,
                                       spacing: 0,
@@ -424,6 +480,87 @@ class HomePage extends StatelessWidget {
                           }
                         }),
                       ),
+                      Gap(Get.height / 20),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(bottom: 15),
+                        height: Get.height / 5.8,
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                          color: ColorManager.white2,
+                          borderRadius: BorderRadius.circular(40),
+                          boxShadow: [
+                            BoxShadow(
+                              color: ColorManager.black.withOpacity(0.1),
+                              blurRadius: 10,
+                              spreadRadius: 1,
+                              offset: const Offset(0, 0),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            ListTile(
+                              leading: CustomIconButton(
+                                onPressed: () {},
+                                icon: const Icon(FontAwesomeIcons.paperPlane),
+                                color: ColorManager.greenbtn2,
+                                iconSize: Get.width / 12,
+                                alignment: Alignment.center,
+                                style: ButtonStyle(
+                                  fixedSize: MaterialStateProperty.all<Size>(
+                                      Size(Get.width / 8, Get.height / 16.2)),
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          ColorManager.white),
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      side: BorderSide(
+                                          color: ColorManager.white3, width: 1),
+                                      borderRadius:
+                                          BorderRadius.circular(100.0),
+                                    ),
+                                  ),
+                                ),
+                                visualDensity: const VisualDensity(
+                                    horizontal: 0, vertical: -4),
+                                autofocus: true,
+                              ),
+                              title: CustomTextWidget(
+                                Txt: "الاستشارات الطبية",
+                                size: Get.width / 25,
+                                color: ColorManager.black,
+                                fontweight: FontWeight.w900,
+                                spacing: 0,
+                              ),
+                              subtitle: CustomTextWidget(
+                                Txt: "اطرح سؤالك واحصل على الاجابة",
+                                size: Get.width / 30,
+                                color: ColorManager.grey,
+                                fontweight: FontWeight.w400,
+                                spacing: 0,
+                              ),
+                            ),
+                            const Gap(10),
+                            SizedBox(
+                              width: Get.width / 2,
+                              height: Get.height / 25,
+                              child: CustomElevatedButton(
+                                size: Get.width / 23,
+                                widthsize: Get.width / 3,
+                                heightsize: Get.height / 20,
+                                txt: "اطرح سؤالك",
+                                onPressed: () {
+                                  AppRoutes().goTo(AppRoutes.feedsScreen);
+                                },
+                                color: ColorManager.primaryColor,
+                                txtcolor: ColorManager.white,
+                              ),
+                            )
+                          ],
+                        ),
+                      )
                     ]),
               ),
             );

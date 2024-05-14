@@ -4,10 +4,20 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:sahtech/controller/home/feed/feed_controller.dart';
+import 'package:sahtech/utils/app_routes.dart';
+import 'package:sahtech/view/home/home%20page/feed/pub_screen.dart';
+import 'package:sahtech/view/home/home%20page/feed/widget/doctor_pub_list_item.dart';
 import 'package:sahtech/view/home/home%20page/feed/widget/widgetbutton.dart';
 import 'package:sahtech/widgets/custom_icone_button.dart';
 import 'package:sahtech/widgets/customtext.dart';
+import '../../../../controller/home/home_page/homepagecontorller.dart';
+import '../../../../controller/home/profile/image_picker_controller.dart';
+import '../../../../utils/global/show_image.dart';
 import '../../../resources/color/color_manager.dart';
+import '../../../resources/color/constant.dart';
+import '../../../resources/size_config.dart';
+import '../doctor_section/widget/skeleton.dart';
+import '../widget/drawer.dart';
 
 class FeedScreen extends StatelessWidget {
   const FeedScreen({super.key});
@@ -15,6 +25,8 @@ class FeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FeedController feedController = Get.put(FeedControllerImp());
+    ImageControllerImp controllerimg = Get.put(ImageControllerImp());
+
     return Scaffold(
         floatingActionButton: Stack(
           alignment: Alignment.bottomRight,
@@ -36,14 +48,18 @@ class FeedScreen extends StatelessWidget {
                   backgroundColor: ColorManager.greenbtn2,
                   label: 'المتابعات',
                   labelStyle: const TextStyle(fontSize: 18.0),
-                  onTap: () async {},
+                  onTap: () async {
+                    feedController.getAllPub('doctor');
+                  },
                 ),
                 SpeedDialChild(
                   child: const Icon(FontAwesomeIcons.feed),
                   backgroundColor: ColorManager.greenbtn2,
                   label: 'كل لاخبار',
                   labelStyle: const TextStyle(fontSize: 18.0),
-                  onTap: () async {},
+                  onTap: () async {
+                    feedController.getAllPub('user');
+                  },
                 ),
               ],
             ),
@@ -170,11 +186,20 @@ class FeedScreen extends StatelessWidget {
                                       onChanged: (String? newValue) {},
                                     ),
                                   ),
-                                  leading: CircleAvatar(
-                                    radius: Get.width / 16,
-                                    backgroundImage: const AssetImage(
-                                        'assets/images/userimage.png'),
-                                  ),
+                                  leading: Obx(() {
+                                    if (controllerimg.image.value == null) {
+                                      return CircleAvatar(
+                                        radius: Get.width / 16,
+                                        backgroundImage: const AssetImage(
+                                            "assets/images/userimage.png"),
+                                      );
+                                    } else {
+                                      return CustomProfieImage(
+                                        redius: Get.width / 16,
+                                        controller: controllerimg,
+                                      );
+                                    }
+                                  }),
                                 ),
                               ),
                             )
@@ -273,13 +298,19 @@ class FeedScreen extends StatelessWidget {
                                 fontweight: FontWeight.bold,
                                 spacing: 0.1),
                             const Gap(5),
-                            CustomTextWidget(
-                                Txt:
-                                    "اطرح اسئلتك واستفساراتك وشاركنا تجاربك ومعلوماتك الطبية والصحية",
-                                color: ColorManager.black,
-                                size: 13,
-                                fontweight: FontWeight.w400,
-                                spacing: 0),
+                            Text(
+                              'اطرح اسئلتك واستفساراتك وشاركنا تجاربك ومعلوماتك الطبية ',
+                              textDirection: TextDirection.rtl,
+                              strutStyle: const StrutStyle(
+                                fontSize: 15,
+                                height: 1,
+                              ),
+                              style: TextStyle(
+                                  fontFamily: 'Tajawal',
+                                  color: ColorManager.blackLight,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w300),
+                            ),
                             const Gap(10),
                             SizedBox(
                               width: Get.width / 2,
@@ -302,138 +333,80 @@ class FeedScreen extends StatelessWidget {
                       'assets/images/women.png',
                       colorBlendMode: BlendMode.darken,
                       fit: BoxFit.cover,
-                    ),
+                    )
                   ],
                 ),
               ),
             ),
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    width: Get.width / 1.2,
-                    margin: const EdgeInsets.only(top: 15, left: 25, right: 25),
-                    height: Get.height / 4,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: ColorManager.white3, width: 1),
-                      color: ColorManager.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: ColorManager.white3,
-                          spreadRadius: 2,
-                          blurRadius: 3,
-                          offset:
-                              const Offset(2, 1), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        ListTile(
-                          title: CustomTextWidget(
-                              Txt: "Nizar Aoun",
-                              color: ColorManager.black,
-                              size: 18,
-                              fontweight: FontWeight.w500,
-                              spacing: 0.1),
-                          subtitle: CustomTextWidget(
-                              Txt: "12/02/2024",
-                              color: ColorManager.grey1,
-                              size: 15,
-                              fontweight: FontWeight.w300,
-                              spacing: 0.1),
-                          leading: CircleAvatar(
-                            radius: Get.width / 16,
-                            backgroundImage:
-                                const AssetImage('assets/images/userimage.png'),
-                          ),
-                        ),
-                        CustomTextWidget(
-                            Txt:
-                                "أشعر بالسعادة لكوني في مغامرة ملحمية أخرى! لقد وصلت للتو إلى مدينة برشلونة الجميلة",
-                            color: ColorManager.blackLight,
-                            size: 15,
-                            fontweight: FontWeight.w300,
-                            spacing: 0.1),
-                        const Spacer(),
-                        Row(
-                          children: [
-                            CustomIconButton(
-                              onPressed: () {},
-                              icon: const Icon(FontAwesomeIcons.solidHeart),
-                              color: ColorManager.grey,
-                              iconSize: 20,
-                              alignment: Alignment.center,
-                              style: ButtonStyle(
-                                fixedSize: MaterialStateProperty.all<Size>(
-                                    Size(Get.width / 10, Get.height / 19.2)),
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        ColorManager.white),
-                                shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        color: ColorManager.white3, width: 1),
-                                    borderRadius: BorderRadius.circular(100.0),
-                                  ),
+          Obx(
+            () => SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: GestureDetector(
+                        onTap: () async {
+                          feedController.isFeedScreen.value = false;
+                          await feedController.getcomment(
+                              feedController.doctorpub[index].postId!);
+
+                          Get.to(() => PublicationScreen(
+                                
+                                commenterpub: feedController.commentpub,
+                                commentCount: feedController
+                                    .doctorpub[index].commentcount!,
+                                feedController: feedController,
+                                index: index,
+                              ));
+                        },
+                        child: Container(
+                            padding: const EdgeInsets.all(10),
+                            width: Get.width / 1.2,
+                            margin: const EdgeInsets.only(
+                                top: 15, left: 25, right: 25),
+                            height: Get.height / 4,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: ColorManager.white3, width: 1),
+                              color: ColorManager.white,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: ColorManager.white3,
+                                  spreadRadius: 2,
+                                  blurRadius: 3,
+                                  offset: const Offset(2, 1),
                                 ),
-                              ),
-                              visualDensity: const VisualDensity(
-                                  horizontal: 0, vertical: -4),
-                              autofocus: true,
+                              ],
                             ),
-                            Gap(Get.width / 20),
-                            CustomIconButton(
-                              onPressed: () {},
-                              icon: const Icon(FontAwesomeIcons.comments),
-                              color: ColorManager.grey,
-                              iconSize: 20,
-                              alignment: Alignment.center,
-                              style: ButtonStyle(
-                                fixedSize: MaterialStateProperty.all<Size>(
-                                    Size(Get.width / 10, Get.height / 19.2)),
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        ColorManager.white),
-                                shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        color: ColorManager.white3, width: 1),
-                                    borderRadius: BorderRadius.circular(100.0),
-                                  ),
-                                ),
-                              ),
-                              visualDensity: const VisualDensity(
-                                  horizontal: 0, vertical: -4),
-                              autofocus: true,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                );
-              },
-              childCount: 5,
+                            child: Obx(
+                              () {
+                                if (feedController.isloading.value == true) {
+                                  return ListView.separated(
+                                      itemCount: 1,
+                                      itemBuilder: (context, index) =>
+                                          const NewsCardSkelton(),
+                                      separatorBuilder: (context, index) =>
+                                          const SizedBox(
+                                              height: defaultPadding));
+                                } else {
+                                  return DoctorPubListItem(
+                                    doctorPub: feedController.doctorpub[index],
+                                  );
+                                }
+                              },
+                            )),
+                      ));
+                },
+                childCount: feedController.doctorpub.isEmpty
+                    ? 5
+                    : feedController.doctorpub.length,
+              ),
             ),
           )
         ]));
   }
 }
 
-//
-//
-// ListView.separated(
-//   itemCount: 5,
-//   itemBuilder: (context, index) => const NewsCardSkelton(),
-//   separatorBuilder: (context, index) =>
-//       const SizedBox(height: defaultPadding),
-// )
 

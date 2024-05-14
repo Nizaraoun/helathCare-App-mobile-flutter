@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sahtech/controller/home/home_page/chat_controller.dart';
 import 'package:sahtech/widgets/custom_icone_button.dart';
 import '../../../../controller/authentification/auth_controller.dart';
+import '../../../../controller/home/feed/feed_controller.dart';
 import '../../../../controller/home/profile/image_picker_controller.dart';
 import '../../../../utils/app_routes.dart';
 import '../../../../widgets/custom_alert_dialog.dart';
@@ -20,7 +21,7 @@ class CustomDrawerWidget extends StatelessWidget {
     ImageControllerImp controller = Get.put(ImageControllerImp());
     AthControllerImp controller2 = Get.put(AthControllerImp());
     ChatController chatController = Get.put(ChatController());
-    // ChatController chatController = Get.put(ChatController());
+    FeedControllerImp feedController = Get.put(FeedControllerImp());
 
     return Drawer(
       clipBehavior: Clip.hardEdge,
@@ -37,7 +38,7 @@ class CustomDrawerWidget extends StatelessWidget {
         children: [
           Container(
             width: Get.width,
-            height: Get.height / 3,
+            height: Get.height / 3.5,
             decoration: const BoxDecoration(
               color: ColorManager.primaryColor,
               borderRadius: BorderRadius.only(
@@ -81,13 +82,13 @@ class CustomDrawerWidget extends StatelessWidget {
               ),
 
               const Gap(25),
-              CustomTextWidget(
-                Txt: controller2.getuserinfo(),
-                size: Get.width / 16,
-                color: Colors.white,
-                fontweight: FontWeight.bold,
-                spacing: 0,
-              ),
+              // CustomTextWidget(
+              //   Txt: controller2.getuserinfo(),
+              //   size: Get.width / 16,
+              //   color: Colors.white,
+              //   fontweight: FontWeight.bold,
+              //   spacing: 0,
+              // ),
               // bch tkoun feha les info el health mta3 el user
               const Row(
                 children: [],
@@ -98,6 +99,7 @@ class CustomDrawerWidget extends StatelessWidget {
             children: [
               Custom_Menu_Item(
                 onTap: () {
+                  
                   AppRoutes().goTo(AppRoutes.feedsScreen);
                 },
                 txt: "المنشورات",

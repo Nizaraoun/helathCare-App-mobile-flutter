@@ -50,28 +50,36 @@ class DoctorScreen extends StatelessWidget {
               const Gap(20),
               Wrap(
                 alignment: WrapAlignment.end,
-                runSpacing: 20,
-                spacing: 20,
+                runSpacing: 10,
+                spacing: 10,
                 children: [
                   CustomSpecialite(
-                      path: Categoryassets.brain,
+                      path: Categoryassets.general,
                       txt: StringsManager().categorylist[0]),
                   CustomSpecialite(
-                      path: Categoryassets.tooth,
+                      path: Categoryassets.brain,
                       txt: StringsManager().categorylist[1]),
                   CustomSpecialite(
-                      path: Categoryassets.cardiology,
+                      path: Categoryassets.tooth,
                       txt: StringsManager().categorylist[2]),
                   CustomSpecialite(
-                      path: Categoryassets.lungs,
+                      path: Categoryassets.cardiology,
                       txt: StringsManager().categorylist[3]),
                   CustomSpecialite(
-                      path: Categoryassets.surgeon,
+                      path: Categoryassets.lungs,
                       txt: StringsManager().categorylist[4]),
-                  // CustomSpecialite(
-                  //     path: Categoryassets.ophtalmology,
-                  //     txt: StringsManager().categorylist[5]),
-                  // CustomSpecialite(),
+                  CustomSpecialite(
+                      path: Categoryassets.surgeon,
+                      txt: StringsManager().categorylist[5]),
+                  CustomSpecialite(
+                      path: Categoryassets.ophtalmology,
+                      txt: StringsManager().categorylist[6]),
+                  CustomSpecialite(
+                      path: Categoryassets.enfance,
+                      txt: StringsManager().categorylist[7]),
+                  CustomSpecialite(
+                      path: Categoryassets.psy,
+                      txt: StringsManager().categorylist[8]),
                 ],
               ),
               Gap(Get.height / 20),
@@ -189,13 +197,13 @@ class CustomSpecialite extends StatelessWidget {
             onTap: () {},
             child: Image.asset(
               path,
-              width: Get.width / 7,
-              height: Get.height / 15,
+              width: Get.width / 8,
+              height: Get.height / 17,
             )),
         const Gap(20),
         CustomTextWidget(
           Txt: txt,
-          size: Get.width / 25,
+          size: Get.width / 31,
           color: ColorManager.black,
           fontweight: FontWeight.bold,
           spacing: 0,

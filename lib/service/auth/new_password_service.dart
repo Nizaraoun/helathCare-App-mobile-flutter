@@ -1,22 +1,27 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:sahtech/utils/app_routes.dart';
-
-import '../../controller/authentification/auth_controller.dart';
 import '../../utils/global/snack_error.dart';
+import '../../utils/global/userdata.dart';
 
-Future<void> otpService(String otp) async {
+Future<void> newPassword(String password, String phone) async {
   final dio = Dio();
-  AthControllerImp controller = Get.put(AthControllerImp());
-  const String url = 'http://10.0.2.2:8080/otp/validate-otp';
+  const String url = 'http://10.0.2.2:8080/update-password';
 
   try {
     final response = await dio.post(
       url,
-      data: {"username": controller.inputsignup[1], "otpNumber": otp},
+      data: {"password": password, "phone": phone},
     );
     if (response.statusCode == 200) {
-      AppRoutes().goToEnd(AppRoutes.newpassword);
+      String? token = await UserData.getuserdata("token");
+      if (token != null) {
+        Get.back();
+      } else {
+
+        AppRoutes().goToEnd(AppRoutes.login);
+      }
     } else {
       showSnackError("خطأ", "الرجاء التأكد من الرمز");
     }

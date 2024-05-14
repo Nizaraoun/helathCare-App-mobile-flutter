@@ -99,6 +99,21 @@ class SizeUtil {
   }
 
 
+  double calculateTextheight(String text, TextStyle style) {
+
+    final TextPainter textPainter = TextPainter(
+
+      text: TextSpan(text: text, style: style),
+
+      textDirection: TextDirection.ltr,
+
+    )..layout();
+
+
+    return textPainter.height;
+
+  }
+
   String inputText(
 
     String text,

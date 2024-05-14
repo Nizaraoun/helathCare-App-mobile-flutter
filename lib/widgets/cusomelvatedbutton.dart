@@ -29,6 +29,7 @@ class CustomElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
@@ -37,6 +38,7 @@ class CustomElevatedButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(40),
           side: BorderSide(color: bordercolor),
         ),
+        
       ),
       child: CustomTextWidget(
         Txt: txt,

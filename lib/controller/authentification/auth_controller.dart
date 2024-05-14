@@ -6,6 +6,7 @@ import 'package:sahtech/view/authentification/login/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../service/auth/login_service.dart';
+import '../../service/auth/new_password_service.dart';
 import '../../service/auth/opt_service.dart';
 import '../../service/auth/signup_service.dart';
 
@@ -21,9 +22,12 @@ class AthControllerImp extends Authcontroller {
   GlobalKey<FormState> formstatelogin = GlobalKey<FormState>();
   GlobalKey<FormState> formstatesingup = GlobalKey<FormState>();
   GlobalKey<FormState> formstateotp = GlobalKey<FormState>();
+  GlobalKey<FormState> newpassword = GlobalKey<FormState>();
+
   List<String> inputsignup = ["", "", "", "", ""];
   List<String> inputlogin = ["", ""];
   List<String> inputotp = ["", "", "", "", "", ""];
+  List<String> inputnewpassword = ["", ""];
   String? name;
 
   //SignUp
@@ -47,6 +51,18 @@ class AthControllerImp extends Authcontroller {
     }
 
     update();
+  }
+
+  //forget password
+  void newPasswordFN() async {
+    var formdata = newpassword.currentState;
+
+    if (formdata!.validate() && inputnewpassword[0] == inputnewpassword[1]) {
+      String password = inputnewpassword[0];
+            String? phone = await UserData.getuserdata("phone");
+
+      newPassword( password, phone!);
+    }
   }
 
 // bch nkhou les donnée mta3 l'utilisateur

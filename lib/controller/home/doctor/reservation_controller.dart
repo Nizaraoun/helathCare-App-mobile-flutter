@@ -14,7 +14,7 @@ abstract class ReservationController extends GetxController {
 
   RxList<bool> buttonStates = <bool>[].obs;
   RxList<String> timeSlots = <String>[].obs;
-  RxList<String> reservation = <String>[].obs;
+  RxList<int> reservation = <int>[].obs;
   bool isButtonEnabled = false;
   void generateTimeSlots(DateTime selectedDate, String idPraticien);
   void _initializeDates();
@@ -112,13 +112,13 @@ class ReservationControllerImp extends ReservationController {
     if (reservation.isEmpty) {
       timeSlots[index] = timeSlots[index];
       buttonStates[index] = !buttonStates[index];
-      reservation.add(index.toString());
+      reservation.add(index);
     } else {
-      int ch = int.parse(reservation[0]);
+      int ch = reservation[0];;
       buttonStates[ch] = !buttonStates[ch];
       buttonStates[index] = !buttonStates[index];
       reservation.clear();
-      reservation.add(index.toString());
+      reservation.add(index);
       timeSlots[index] = timeSlots[index];
     }
   }

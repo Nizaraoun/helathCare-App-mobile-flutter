@@ -76,8 +76,8 @@ class ChatController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    
     subscribeToMessageUpdates();
-    getChatList();
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       subscribeToMessageUpdates();
     });

@@ -5,8 +5,9 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sahtech/view/resources/color/color_manager.dart';
 import 'package:sahtech/widgets/customtext.dart';
-import '../../../../widgets/customlistview.dart';
-import '../../../controller/home/doctor/reservation_controller.dart';
+
+import '../../../../../controller/home/doctor/reservation_controller.dart';
+import '../../../../../widgets/customlistview.dart';
 
 class RendVous extends StatelessWidget {
   const RendVous({
@@ -33,8 +34,10 @@ class RendVous extends StatelessWidget {
                 return Obx(() {
                   return GestureDetector(
                     onTap: () {
+                      controller.reservation.clear();
                       controller.selectedIndex.value = index;
                       controller.selectedDate = controller.dates[index];
+                      print(controller.selectedDate);
                       controller.generateTimeSlots(
                           controller.selectedDate, controller.idPraticien);
                     },
